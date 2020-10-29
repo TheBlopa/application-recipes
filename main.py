@@ -13,7 +13,7 @@ import webbrowser
 """from plyer import notification
 from plyer.compat import PY2
 from os.path import join, dirname, realpath"""
-#pruebas git
+#pruebas gi
 
 class HomeScreen(Screen):
     pass
@@ -34,10 +34,15 @@ class MainApp(App):
 
     def on_start(self):
         self.change_screen("home_screen")
+        recipe_text=self.root.ids['home_screen'].ids['receta_id']
+        recipe_text.text="La lechuga se echa por la alcantarilla para despues aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaa servirla con perejil potado, salteado en una sarten con media mierdaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     def change_screen(self, screen_name):
         screen_manager = self.root.ids['screen_manager']
         screen_manager.current = screen_name
+    
+    def ping(self, n, value):
+        print("funciona")
 
 if __name__ == "__main__":
     MainApp().run()

@@ -45,6 +45,8 @@
                 text: ""
                 id: fever_id
                 font_size: "28sp"
+            CheckBox:
+             #   on_active:root.ping('ch1', self.active)
 
         ScrollView:
             id: Scroll
@@ -62,7 +64,7 @@
                 cols: 1
                 size_hint_y: None
                 Label:
-                    text: "La lechuga se echa por la alcantarilla para despues aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaa servirla con perejil potado, salteado en una sarten con media mierdaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                    text: ""
                     id: receta_id
                     font_size: "18sp"
                     color: 0,0,0,1
@@ -76,7 +78,5 @@
                 source: "icons/fever.png"
             ImageButton:
                 source: "icons/graph.png"
-                on_release:
-                    app.grafico()
             Image:
                 source: "icons/fever.png"
