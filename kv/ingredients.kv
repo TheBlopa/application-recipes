@@ -1,0 +1,17 @@
+#: import utils kivy.utils
+
+<Ingredients>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#5777d9")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        ScrollView:
+            GridLayout:
+                id: l_recipe
+                size_hint_y: None
+                cols: 2
+                row_default_height: root.height*0.2
+                height: self.minimum_height

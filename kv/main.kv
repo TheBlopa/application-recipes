@@ -1,5 +1,8 @@
 #:include kv/homescreen.kv
+#:include kv/list_recipes.kv
 #:include kv/login.kv
+#:include kv/recipes.kv
+#:include kv/ingredients.kv
 
 GridLayout:
     cols: 1
@@ -11,3 +14,12 @@ GridLayout:
         HomeScreen:
             name: "home_screen"
             id: home_screen
+        ListRecipes:
+            name: "list_recipes"
+            id: list_recipes
+        Recipes:
+            name: "recipes"
+            id: recipes
+        Ingredients
+            name: "ingredients"
+            id: ingredients

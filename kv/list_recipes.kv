@@ -1,0 +1,30 @@
+#: import utils kivy.utils
+
+<ListRecipes>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#5777d9")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        GridLayout:
+            cols: 1
+            Image:
+                source: "icons/recetas.png"
+            ImageButton:
+                source: "icons/variedad.png"
+                id: variety_button
+                on_release:
+                    app.listado('verduras')
+            ImageButton:
+                id: meat_button
+                source: "icons/carne.png"
+                on_release:
+                    app.listado('meat')
+            ImageButton:
+                id: fish_button
+                source: "icons/pescado.png"
+                on_release:
+                    app.listado('fish')            
