@@ -7,6 +7,7 @@ from kivy.uix.button import ButtonBehavior
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.checkbox import CheckBox
+from functools import partial
 import kivy.utils
 #from MyFirebase import MyFirebase
 import requests
@@ -68,19 +69,16 @@ class MainApp(App):
         scroll = self.root.ids['recipes'].ids['l_recipe']
         data = self.data[option]
         for key in data:
-            btn=Button(text=str(key))
-            btn.bind(on_release=lambda a:self.receta(data, key))
+            btn=Button(text=str(key), on_press=partial(self.receta, data=data[key]))
             scroll.add_widget(btn)
 
-    def receta(self, data, key):
-        print(key)
+    def receta(self, caller, data):
         self.change_screen('ingredients')
         scroll = self.root.ids['ingredients'].ids['l_recipe']
-        # print(data['ingredientes'])
-        # dat=data['ingredientes'].split(", ")
-        # for i in dat:
-        #     scroll.add_widget(Label(text=str(i)))
-        #     scroll.add_widget(CheckBox())
+        dat=data['ingredientes'].split(", ")
+        for i in dat:
+            scroll.add_widget(Label(text=str(i)))
+            scroll.add_widget(CheckBox())
 
 
 
