@@ -39,6 +39,9 @@ class Recipes(Screen):
 class Ingredients(Screen):
     pass
 
+class MyLabel(Label):
+    pass
+
 GUI = Builder.load_file("kv/main.kv", encoding="utf-8")
 
 class MainApp(App):
@@ -76,8 +79,11 @@ class MainApp(App):
         self.change_screen('ingredients')
         scroll = self.root.ids['ingredients'].ids['l_recipe']
         dat=data['ingredientes'].split(", ")
+        scroll.add_widget(Image(source="icons/ingredients.png"))
+        scroll.add_widget(Image(source="icons/ingredients.png"))
         for i in dat:
-            scroll.add_widget(Label(text=str(i)))
+            etiq=MyLabel(text=str(i))
+            scroll.add_widget(etiq)
             scroll.add_widget(CheckBox())
 
 
