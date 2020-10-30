@@ -1,17 +1,58 @@
 #: import utils kivy.utils
 
+<MyLabel>:
+    valing: 'middle'
+    haling: 'center'
+    text_size: self.size
+    padding: (20,30)
+
 <Ingredients>:
     FloatLayout:
         canvas:
             Color:
-                rgb: utils.get_color_from_hex("#5777d9")
+                rgb: utils.get_color_from_hex("#222a75")
             Rectangle:
                 size: self.size
                 pos: self.pos
+        GridLayout:
+            cols: 1
+            pos_hint: {"top":1, "left": 1}
+            size_hint:1, .2
+            Image:
+                source: "icons/ingredients.png"
+                #source: "icons/cooking.png"
         ScrollView:
+            pos_hint: {"top": .8, "left":1}
+            size_hint: 1, .6
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#1a2059")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
             GridLayout:
+                canvas.after:
+                    Line:
+                        width: 2
                 id: l_recipe
                 size_hint_y: None
                 cols: 2
                 row_default_height: root.height*0.2
                 height: self.minimum_height
+        GridLayout:
+            cols: 2
+            pos_hint: {"top":.2, "left": 1}
+            size_hint:1, .2
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#1a2059")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                source: "icons/back.png"
+                on_release:
+                    app.change_screen("recipes",'ingredients')
+            ImageButton:
+                source: "icons/next.png"
+                #on_release:

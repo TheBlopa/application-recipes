@@ -1,23 +1,46 @@
 #: import utils kivy.utils
 
-<MyLabel>:
-    valing: 'middle'
-    haling: 'center'
-    text_size: self.size
-    padding: (20,30)
 
 <Recipes>:
     FloatLayout:
         canvas:
             Color:
-                rgb: utils.get_color_from_hex("#5777d9")
+                rgb: utils.get_color_from_hex("#222a75")
             Rectangle:
                 size: self.size
                 pos: self.pos
+        GridLayout:
+            id: recipes_image
+            cols: 1
+            pos_hint: {"top":1, "left": 1}
+            size_hint:1, .2
         ScrollView:
+            pos_hint: {"top": .8, "left":1}
+            size_hint: 1, .6
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#222a75")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
             GridLayout:
                 id: l_recipe
                 size_hint_y: None
                 cols: 1
                 row_default_height: root.height*0.2
                 height: self.minimum_height
+        GridLayout:
+            cols: 2
+            pos_hint: {"top":.2, "left": .1}
+            size_hint:1, .2
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#222a75")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                width: 10
+                source: "icons/back.png"
+                on_release:
+                    app.change_screen("list_recipes",'recipes')

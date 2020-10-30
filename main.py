@@ -55,36 +55,43 @@ class MainApp(App):
         self.data = json.loads(result.content.decode())
         print(self.data)
         # self.change_screen("home_screen")
-        self.change_screen("list_recipes")
+        self.change_screen("list_recipes",'')
         recipe_text=self.root.ids['home_screen'].ids['receta_id']
         recipe_text.text="La lechuga se echa por la alcantarilla para despues aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaa servirla con perejil potado, salteado en una sarten con media mierdaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
-    def change_screen(self, screen_name):
+    def change_screen(self, screen_name, prev):
         screen_manager = self.root.ids['screen_manager']
         screen_manager.current = screen_name
+        # hay que solucionar la repeticion de los widgets cunado se vuelve a cambiar
+        # de screen, probar con contador a la hora de añadir los elementos
+        # screen_manager.previous = prev
+        # if prev:
+        #     previ = self.root.ids[prev]
+        #     previ.clear_widgets()
+        #     print(screen_manager.previous)
     
     def ping(self, n, value):
         print("funciona")
     
 
     def listado(self, option):
-        self.change_screen('recipes')
+        self.change_screen('recipes','list_recipes')
         scroll = self.root.ids['recipes'].ids['l_recipe']
+        head = self.root.ids['recipes'].ids['recipes_image']
         data = self.data[option]
+        head.add_widget(Image(source="icons/variedad.png"))
         for key in data:
-            btn=Button(text=str(key), on_press=partial(self.receta, data=data[key]))
+            btn=Button(text=str(key), on_release=partial(self.receta, data=data[key]))
             scroll.add_widget(btn)
 
     def receta(self, caller, data):
-        self.change_screen('ingredients')
+        self.change_screen('ingredients','recipes')
         scroll = self.root.ids['ingredients'].ids['l_recipe']
         dat=data['ingredientes'].split(", ")
-        scroll.add_widget(Image(source="icons/ingredients.png"))
-        scroll.add_widget(Image(source="icons/ingredients.png"))
         for i in dat:
             etiq=MyLabel(text=str(i))
             scroll.add_widget(etiq)
-            scroll.add_widget(CheckBox())
+            scroll.add_widget(CheckBox(size_hint_x=None, width=100, color=(1,1,0,1)))
 
 
 
