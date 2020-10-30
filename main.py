@@ -39,6 +39,9 @@ class Recipes(Screen):
 class Ingredients(Screen):
     pass
 
+class Cooking(Screen):
+    pass
+
 class MyLabel(Label):
     pass
 
@@ -92,6 +95,16 @@ class MainApp(App):
             etiq=MyLabel(text=str(i))
             scroll.add_widget(etiq)
             scroll.add_widget(CheckBox(size_hint_x=None, width=100, color=(1,1,0,1)))
+        button=ImageButton(source="icons/next.png", on_release=partial(self.cook, data=data['preparacion']))
+        # buttons=self.root.ids['ingredients'].ids['next']
+        # buttons.on_release=self.cook(data['preparacion'])
+        buttons = self.root.ids['ingredients'].ids['buttons_grid']
+        buttons.add_widget(button)
+    
+    def cook(self, caller, data):
+        self.change_screen('cooking','ingredients')
+        scroll = self.root.ids['cooking'].ids['receta_id']
+        scroll.text=data
 
 
 
