@@ -2,14 +2,15 @@
 
 <ListRecipes>:
     FloatLayout:
-        canvas:
-            Color:
-                rgb: utils.get_color_from_hex("#222a75")
+        canvas.before:
             Rectangle:
                 size: self.size
                 pos: self.pos
+                source: "icons/diseno.png"
 
         GridLayout:
+            pos_hint: {"top": .85, "left":1}
+            size_hint: 1, .8
             cols: 1
             Image:
                 source: "icons/recetas.png"

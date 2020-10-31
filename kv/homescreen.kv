@@ -1,10 +1,23 @@
 #: import utils kivy.utils
 
+<MyCheckBox>
+    canvas.before:
+        Color:
+            rgb: 0,0,0
+        Rectangle:
+            pos:self.center_x-8, self.center_y-8
+            size:[16,16]
+        Color:
+            rgb: .91, .91, .91
+        Rectangle:
+            pos:self.center_x-7, self.center_y-7
+            size:[14,14]
+
 <HomeScreen>:
     FloatLayout:
         canvas:
             Color:
-                rgb: utils.get_color_from_hex("#35477d")
+                rgb: utils.get_color_from_hex("#ffffff")
             Rectangle:
                 size: self.size
                 pos: self.pos
@@ -48,8 +61,7 @@
                 text: ""
                 id: fever_id
                 font_size: "28sp"
-            CheckBox:
-             #   on_active:root.ping('ch1', self.active)
+            MyCheckBox:    
 
         ScrollView:
             id: Scroll

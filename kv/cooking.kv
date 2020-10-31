@@ -2,27 +2,27 @@
 
 <Cooking>:
     FloatLayout:
-        canvas:
-            Color:
-                rgb: utils.get_color_from_hex("#222a75")
+        canvas.before:
             Rectangle:
                 size: self.size
                 pos: self.pos
+                source: "icons/diseno.png"
         GridLayout:
+            id: test
             cols: 1
-            pos_hint: {"top":1, "left": 1}
-            size_hint:1, .2
+            pos_hint: {"top":.85, "left": 1}
+            size_hint:1, .15
             Image:
                 source: "icons/cooking.png"
         ScrollView:
-            pos_hint: {"top": .8, "left":1}
-            size_hint: 1, .6
             canvas.before:
-                Color:
-                    rgb: utils.get_color_from_hex("#1a2059")
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
+                Color: 
+                    rgba: rgba('#EDEDED')
+                Line: 
+                    width: 1.5
+                    rectangle: (self.x, self.y, self.width, self.height) 
+            pos_hint: {"top": .7, "left":1}
+            size_hint: 1, .6
             GridLayout:
                 id: cooking_grid
                 cols: 1
@@ -31,22 +31,19 @@
                     text: ""
                     id: receta_id
                     font_size: "18sp"
-                    text_size: (self.width, None)
+                    text_size: (self.width*0.8, None)
                     pading: (20,30)
+                    color: (0,0,0,1)
         GridLayout:
+            id: grid_test
             cols: 2
-            pos_hint: {"top":.2, "left": 1}
-            size_hint:1, .2
-            canvas.before:
-                Color:
-                    rgb: utils.get_color_from_hex("#1a2059")
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
+            pos_hint: {"top":.1, "left": 1}
+            size_hint:1, .1
             ImageButton:
+                id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("recipes",'ingredients')
+                    app.change_screen("ingredients")
             ImageButton:
+                id: next
                 source: "icons/next.png"
-                #on_release:

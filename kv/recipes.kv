@@ -3,26 +3,19 @@
 
 <Recipes>:
     FloatLayout:
-        canvas:
-            Color:
-                rgb: utils.get_color_from_hex("#222a75")
+        canvas.before:
             Rectangle:
                 size: self.size
                 pos: self.pos
+                source: "icons/diseno.png"
         GridLayout:
             id: recipes_image
             cols: 1
-            pos_hint: {"top":1, "left": 1}
-            size_hint:1, .2
+            pos_hint: {"top":.85, "left": 1}
+            size_hint:1, .15
         ScrollView:
-            pos_hint: {"top": .8, "left":1}
+            pos_hint: {"top": .7, "left":1}
             size_hint: 1, .6
-            canvas.before:
-                Color:
-                    rgb: utils.get_color_from_hex("#222a75")
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
             GridLayout:
                 id: l_recipe
                 size_hint_y: None
@@ -31,16 +24,10 @@
                 height: self.minimum_height
         GridLayout:
             cols: 2
-            pos_hint: {"top":.2, "left": .1}
-            size_hint:1, .2
-            canvas.before:
-                Color:
-                    rgb: utils.get_color_from_hex("#222a75")
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
+            pos_hint: {"top":.1, "left": .1}
+            size_hint:1, .1
             ImageButton:
                 width: 10
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("list_recipes",'recipes')
+                    app.change_screen("list_recipes")

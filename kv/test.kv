@@ -1,0 +1,21 @@
+#: import utils kivy.utils
+
+<Test>:
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex("#fbfffb")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source: "icons/diseno.png"
+    FloatLayout:
+        #canvas.before:
+        #    Color:
+        #        rgba: rgba('#2a6ccd')
+        #    Triangle:
+        #        points: [0, self.size[1],self.size[0],self.size[1],self.size[0],self.size[1]-(.4*self.size[1])]
+        #    Color:
+        #        rgba: rgba('#ff7f27')
+        #    Triangle:
+        #        points: [0, self.size[1],self.size[0],self.size[1],0,self.size[1]-(.4*self.size[1])]
+            
