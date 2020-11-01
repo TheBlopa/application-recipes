@@ -6,26 +6,67 @@
             Rectangle:
                 size: self.size
                 pos: self.pos
-                source: "icons/diseno.png"
-
+                source: "icons/deseno_test.png"
         GridLayout:
-            pos_hint: {"top": .85, "left":1}
-            size_hint: 1, .8
             cols: 1
+            pos_hint: {"top": .9, "left":1}
+            size_hint: 1, .15
             Image:
                 source: "icons/recetas.png"
+            Label:
+                text: "MyRecipes"
+                font_size: "18sp"
+                color: rgba('#000000')
+                haling: ('center')
+                size_hint_y: None
+                height: dp(30)
+        GridLayout:
+            pos_hint: {"top": .75, "left":1}
+            size_hint: 1, .38
+            cols: 2
+            BoxLayout:
+                orientation: 'vertical'
+                cols: 1
+                ImageButton:
+                    id: meat_button
+                    source: "icons/carne.png"
+                    on_release:
+                        app.listado('meat')
+                Label:
+                    text: "Carnes"
+                    font_size: "18sp"
+                    color: rgba('#000000')
+                    haling: ('center')
+                    size_hint_y: None
+                    height: dp(30)
+            BoxLayout:
+                orientation: 'vertical'
+                cols: 1
+                ImageButton:
+                    id: fish_button
+                    source: "icons/pescado.png"
+                    on_release:
+                        app.listado('fish') 
+                Label:
+                    text: "Pescados"
+                    font_size: "18sp"
+                    color: rgba('#000000')
+                    haling: ('center')
+                    size_hint_y: None
+                    height: dp(30)    
+        GridLayout:
+            pos_hint: {"top": .37, "left":1}
+            size_hint: 1, .37
+            cols: 1  
             ImageButton:
                 source: "icons/variedad.png"
                 id: variety_button
                 on_release:
-                    app.listado('verduras')
-            ImageButton:
-                id: meat_button
-                source: "icons/carne.png"
-                on_release:
-                    app.listado('meat')
-            ImageButton:
-                id: fish_button
-                source: "icons/pescado.png"
-                on_release:
-                    app.listado('fish')            
+                    app.listado('variedad')
+            Label:
+                text: "Variedad"
+                font_size: "18sp"
+                color: rgba('#000000')
+                haling: ('center')
+                size_hint_y: None
+                height: dp(30)     

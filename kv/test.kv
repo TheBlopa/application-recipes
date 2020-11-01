@@ -1,21 +1,50 @@
 #: import utils kivy.utils
 
 <Test>:
-    canvas.before:
-        Color:
-            rgb: utils.get_color_from_hex("#fbfffb")
-        Rectangle:
-            size: self.size
-            pos: self.pos
-            source: "icons/diseno.png"
     FloatLayout:
-        #canvas.before:
-        #    Color:
-        #        rgba: rgba('#2a6ccd')
-        #    Triangle:
-        #        points: [0, self.size[1],self.size[0],self.size[1],self.size[0],self.size[1]-(.4*self.size[1])]
-        #    Color:
-        #        rgba: rgba('#ff7f27')
-        #    Triangle:
-        #        points: [0, self.size[1],self.size[0],self.size[1],0,self.size[1]-(.4*self.size[1])]
+        canvas.before:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icons/diseno.png"
+        GridLayout:
+            id: test
+            cols: 1
+            pos_hint: {"top":.85, "left": 1}
+            size_hint:1, .15
+            Image:
+                source: "icons/cooking.png"
+        GridLayout:
+            canvas.before:
+                Color: 
+                    rgba: rgba('#EDEDED')
+                Line: 
+                    width: 1.5
+                    rectangle: (self.x, self.y, self.width, self.height) 
+            pos_hint: {"top": .7, "left":1}
+            size_hint: 1, .58
+            id: cooking_grid
+            cols: 1
+            TextInput:
+                padding: (20,10)
+                text: "Introducir las instrucciones de preparación"
+                id: receta_id
+                font_size: "18sp"
+                text_size: (self.width, None)
+                color: (0,0,0,1)
+        GridLayout:
+            id: grid_test
+            cols: 2
+            pos_hint: {"top":.11, "left": 1}
+            size_hint: 1, .1
+            ImageButton:
+                id: back
+                source: "icons/back.png"
+                on_release:
+                    app.change_screen("test")
+            ImageButton:
+                id: next
+                source: "icons/next.png"
+                on_release:
+                    app.ping(receta_id.text)
             

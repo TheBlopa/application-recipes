@@ -28,11 +28,13 @@
                 cols: 1
                 size_hint_y: None
                 Label:
+                    size_hint_y: None
+                    padding: (20,10)
+                    height: self.texture_size[1]
                     text: ""
                     id: receta_id
                     font_size: "18sp"
-                    text_size: (self.width*0.8, None)
-                    pading: (20,30)
+                    text_size: (self.width, None)
                     color: (0,0,0,1)
         GridLayout:
             id: grid_test

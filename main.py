@@ -27,7 +27,7 @@ class Login(Screen):
 class ImageButton(ButtonBehavior, Image):
     pass
 
-class WrapButton(Button):
+class SmoothButton(Button):
     pass
 
 class ListRecipes(Screen):
@@ -71,8 +71,8 @@ class MainApp(App):
         screen_manager = self.root.ids['screen_manager']
         screen_manager.current = screen_name
     
-    def ping(self, n, value):
-        print("funciona")
+    def ping(self, value):
+        print(value)
     
 
     def listado(self, option):
@@ -84,7 +84,7 @@ class MainApp(App):
         scroll.clear_widgets()
         head.add_widget(Image(source="icons/recipe.png"))
         for key in data:
-            btn=Button(text=str(key), 
+            btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]', 
                 on_release=partial(self.receta, data=data[key]))
             scroll.add_widget(btn)
 
@@ -108,6 +108,7 @@ class MainApp(App):
         self.change_screen('cooking')
         scroll = self.root.ids['cooking'].ids['receta_id']
         scroll.text=data
+        print(data)
 
 
 
