@@ -59,10 +59,13 @@ class Test(Screen):
 GUI = Builder.load_file("kv/main.kv", encoding="utf-8")
 
 class MainApp(App):
+    def __init__(self, **kwargs):
+        super(MainApp, self).__init__(**kwargs)
+        Window.bind(on_keyboard=self.on_key)
+        
     def build(self):
         # self.my_firebase = MyFirebase()
         # Clock.schedule_interval(self.Callback_Clock, 30)
-        Window.bind(on_keyboard=self.on_key)
         return GUI
 
     def on_start(self):
