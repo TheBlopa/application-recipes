@@ -7,7 +7,9 @@ from kivy.uix.button import ButtonBehavior
 from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.checkbox import CheckBox
+from kivy.uix.textinput import TextInput
 from functools import partial
+from kivy.core.window import Window
 import kivy.utils
 #from MyFirebase import MyFirebase
 import requests
@@ -48,6 +50,9 @@ class MyLabel(Label):
 class MyCheckBox(CheckBox):
     pass
 
+class MyTextInput(TextInput):
+    pass
+
 class Test(Screen):
     pass
 
@@ -57,6 +62,7 @@ class MainApp(App):
     def build(self):
         # self.my_firebase = MyFirebase()
         # Clock.schedule_interval(self.Callback_Clock, 30)
+        Window.bind(on_keyboard=self.on_key)
         return GUI
 
     def on_start(self):
@@ -71,8 +77,17 @@ class MainApp(App):
         screen_manager = self.root.ids['screen_manager']
         screen_manager.current = screen_name
     
-    def ping(self, value):
-        print(value)
+    def ping(self):
+        scroll = self.root.ids['test'].ids['l_recipe']
+        text=MyTextInput()
+        scroll.add_widget(text)
+
+    def getText(self):
+        scroll = self.root.ids['test'].ids['l_recipe']
+        child=''
+        for children in scroll.children:
+            child+=children.text+','
+        print(child)
     
 
     def listado(self, option):
@@ -110,6 +125,9 @@ class MainApp(App):
         scroll.text=data
         print(data)
 
+    def on_key(self, window, key, *args):
+        if key == 27:  # the esc key
+            self.change_screen('home_screen')
 
 
 if __name__ == "__main__":

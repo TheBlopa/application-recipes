@@ -14,37 +14,29 @@
             size_hint:1, .15
             Image:
                 source: "icons/cooking.png"
-        GridLayout:
-            canvas.before:
-                Color: 
-                    rgba: rgba('#EDEDED')
-                Line: 
-                    width: 1.5
-                    rectangle: (self.x, self.y, self.width, self.height) 
-            pos_hint: {"top": .7, "left":1}
-            size_hint: 1, .58
-            id: cooking_grid
-            cols: 1
-            TextInput:
-                padding: (20,10)
-                text: "Introducir las instrucciones de preparación"
-                id: receta_id
-                font_size: "18sp"
-                text_size: (self.width, None)
-                color: (0,0,0,1)
+        ScrollView:
+            pos_hint: {"top": .7, "center_x": .5}
+            size_hint: .6, .55
+            GridLayout:
+                id: l_recipe
+                size_hint_y: None
+                cols: 1
+                row_default_height: root.height*0.2
+                height: self.minimum_height
+            
         GridLayout:
             id: grid_test
             cols: 2
-            pos_hint: {"top":.11, "left": 1}
+            pos_hint: {"top":.13, "left": 1}
             size_hint: 1, .1
             ImageButton:
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("test")
+                    app.getText()
             ImageButton:
                 id: next
                 source: "icons/next.png"
                 on_release:
-                    app.ping(receta_id.text)
+                    app.ping()
             
