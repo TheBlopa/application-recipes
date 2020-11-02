@@ -85,6 +85,8 @@ class MainApp(App):
         screen_manager.current = screen_name
         if screen_name == 'submit':
             self.root.ids['submit'].ids['title'].text = self.root.ids['new_ingre'].ids['titulo'].text
+        if screen_name == 'new_ingre':
+            self.root.ids['new_ingre'].ids['l_recipe'].clear_widgets()
 
     
     def add_ingre(self):
