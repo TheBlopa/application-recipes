@@ -1,6 +1,4 @@
-#:include kv/homescreen.kv
 #:include kv/list_recipes.kv
-#:include kv/login.kv
 #:include kv/recipes.kv
 #:include kv/ingredients.kv
 #:include kv/cooking.kv
@@ -79,12 +77,6 @@ GridLayout:
     cols: 1
     ScreenManager:
         id: screen_manager
-        Login:
-            name: "login"
-            id: login
-        HomeScreen:
-            name: "home_screen"
-            id: home_screen
         ListRecipes:
             name: "list_recipes"
             id: list_recipes

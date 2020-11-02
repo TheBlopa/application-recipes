@@ -79,8 +79,6 @@ class MainApp(App):
         result = requests.get("https://recetas-acfc9.firebaseio.com/1.json")
         self.data = json.loads(result.content.decode())
         self.change_screen("list_recipes")
-        recipe_text=self.root.ids['home_screen'].ids['receta_id']
-        recipe_text.text="La lechuga se echa por la alcantarilla para despues aaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaa servirla con perejil potado, salteado en una sarten con media mierdaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
     def change_screen(self, screen_name):
         screen_manager = self.root.ids['screen_manager']
@@ -99,11 +97,9 @@ class MainApp(App):
         child=''
         for children in scroll.children:
             child+=children.text+';'
-        recipe=self.category+':'+self.root.ids['new_ingre'].ids['titulo'].text+':'+child[:-1]+':'+self.root.ids['submit'].ids['cooking_input'].text
-        print(recipe)
-        datos = {"fecha": data[0], "fiebre": data[1], "peso": data[2], "posfiebre": data[3], "temp": data[4]}
-        datos_requests = requests.post("https://proyectoubicua-1f0ab.firebaseio.com/%s/medidas.json?auth=%s"
-                                       % (local_id, id_token), data=json.dumps(datos))
+        datos = {self.root.ids['new_ingre'].ids['titulo'].text: {'ingredientes': child[:-1], 'preparacion': self.root.ids['submit'].ids['cooking_input'].text}}
+        requests.post("https://recetas-acfc9.firebaseio.com/1/%s.json"% (self.category), data=json.dumps(datos))
+        self.on_start()
     
 
     def listado(self, option):
@@ -116,15 +112,16 @@ class MainApp(App):
         scroll.clear_widgets()
         head.add_widget(Image(source="icons/recipe.png"))
         for key in data:
-            btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]', 
-                on_release=partial(self.receta, data=data[key]))
-            scroll.add_widget(btn)
+            for title in data[key].keys():
+                btn=SmoothButton(text='[color=#000000]'+str(title)+'[/color]', 
+                    on_release=partial(self.receta, data=data[key][title]))
+                scroll.add_widget(btn)
 
     def receta(self, caller, data):
         self.change_screen('ingredients')
         scroll = self.root.ids['ingredients'].ids['l_recipe']
         scroll.clear_widgets()
-        dat=data['ingredientes'].split("; ")
+        dat=data['ingredientes'].split(";")
         for i in dat:
             etiq=MyLabel(text=str(i),color= (0,0,0,1))
             scroll.add_widget(etiq)
@@ -136,7 +133,6 @@ class MainApp(App):
         self.change_screen('cooking')
         scroll = self.root.ids['cooking'].ids['receta_id']
         scroll.text=data
-        print(data)
 
     # def on_key(self, window, key, *args):
     #     if key == 27:  # the esc key
