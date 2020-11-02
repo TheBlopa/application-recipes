@@ -9,7 +9,7 @@ from kivy.uix.image import Image
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.textinput import TextInput
 from functools import partial
-from kivy.core.window import Window
+# from kivy.core.window import Window
 import kivy.utils
 #from MyFirebase import MyFirebase
 import requests
@@ -56,12 +56,18 @@ class MyTextInput(TextInput):
 class Test(Screen):
     pass
 
+class New_ingre(Screen):
+    pass
+
+class Submit(Screen):
+    pass
+
 GUI = Builder.load_file("kv/main.kv", encoding="utf-8")
 
 class MainApp(App):
-    def __init__(self, **kwargs):
-        super(MainApp, self).__init__(**kwargs)
-        Window.bind(on_keyboard=self.on_key)
+    # def __init__(self, **kwargs):
+    #     super(MainApp, self).__init__(**kwargs)
+    #     Window.bind(on_keyboard=self.on_key)
         
     def build(self):
         # self.my_firebase = MyFirebase()
@@ -79,18 +85,22 @@ class MainApp(App):
     def change_screen(self, screen_name):
         screen_manager = self.root.ids['screen_manager']
         screen_manager.current = screen_name
+        if screen_name == 'submit':
+            self.root.ids['submit'].ids['title'].text = self.root.ids['new_ingre'].ids['titulo'].text
+
     
-    def ping(self):
-        scroll = self.root.ids['test'].ids['l_recipe']
-        text=MyTextInput()
+    def add_ingre(self):
+        scroll = self.root.ids['new_ingre'].ids['l_recipe']
+        text=MyTextInput(text='Ingrediente')
         scroll.add_widget(text)
 
     def getText(self):
-        scroll = self.root.ids['test'].ids['l_recipe']
+        scroll = self.root.ids['new_ingre'].ids['l_recipe']
         child=''
         for children in scroll.children:
-            child+=children.text+','
-        print(child)
+            child+=children.text+';'
+        recipe=self.root.ids['new_ingre'].ids['titulo'].text+':'+child[:-1]+':'+self.root.ids['submit'].ids['cooking_input'].text
+        print(recipe)
     
 
     def listado(self, option):
@@ -110,27 +120,23 @@ class MainApp(App):
         self.change_screen('ingredients')
         scroll = self.root.ids['ingredients'].ids['l_recipe']
         scroll.clear_widgets()
-        dat=data['ingredientes'].split(", ")
+        dat=data['ingredientes'].split("; ")
         for i in dat:
             etiq=MyLabel(text=str(i),color= (0,0,0,1))
             scroll.add_widget(etiq)
             scroll.add_widget(MyCheckBox(size_hint_x=None, width=100))
-        button_next=ImageButton(source="icons/next.png", on_release=partial(self.cook, data=data['preparacion']))
-        button_back=ImageButton(source="icons/back.png", on_release=lambda x: self.change_screen('recipes'))
-        buttons = self.root.ids['ingredients'].ids['buttons_grid']
-        buttons.clear_widgets()
-        buttons.add_widget(button_back)
-        buttons.add_widget(button_next)
+        button_next = self.root.ids['ingredients'].ids['next']
+        button_next.on_release = partial(self.cook, data=data['preparacion'])
     
-    def cook(self, caller, data):
+    def cook(self, data):
         self.change_screen('cooking')
         scroll = self.root.ids['cooking'].ids['receta_id']
         scroll.text=data
         print(data)
 
-    def on_key(self, window, key, *args):
-        if key == 27:  # the esc key
-            self.change_screen('home_screen')
+    # def on_key(self, window, key, *args):
+    #     if key == 27:  # the esc key
+    #         self.change_screen('home_screen')
 
 
 if __name__ == "__main__":

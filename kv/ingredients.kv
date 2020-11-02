@@ -34,6 +34,19 @@
                 height: self.minimum_height
         GridLayout:
             id: buttons_grid
-            cols: 2
+            cols: 3
             pos_hint: {"top":.1, "left": 1}
             size_hint:1, .1
+            ImageButton:
+                id: back
+                source: "icons/back.png"
+                on_release:
+                    app.change_screen('recipes')
+            ImageButton:
+                id: home
+                source: 'icons/home.png'
+                on_release:
+                    app.change_screen('list_recipes')
+            ImageButton:
+                id: next
+                source: "icons/next.png"

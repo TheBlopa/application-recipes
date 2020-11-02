@@ -5,6 +5,8 @@
 #:include kv/ingredients.kv
 #:include kv/cooking.kv
 #:include kv/test.kv
+#:include kv/new_ingre.kv
+#:include kv/submit.kv
 
 <MyCheckBox>
     canvas.before:
@@ -25,7 +27,7 @@
     text_size: self.size
     padding: (20,30)
 
-<MyTextInput>
+<MyTextInput@TextInput>
     canvas.before:
         Color: 
             rgba: .3,.3,.3,1
@@ -36,9 +38,12 @@
     padding: (20,10)
     text_size: (self.width, None)
     color: (0,0,0,1)
-    size_hint_y: None
+    size_hint: (.2, None)
+    height: self.minimum_height
+    multiline: False
 
 <SmoothButton@Button>
+    id: smoothbutton
     background_color: (0,0,0,0)
     backkground_normal: ''
     back_color: (.97, .86, .64, 1)
@@ -52,6 +57,23 @@
             pos: self.pos
             size: self.size
             radius: [18]
+
+<FloatButton@Button>
+    id: float_root
+    background_color: (0,0,0,0)
+    backkground_normal: ''
+    back_color: (.97, .86, .64, 1)
+    markup: True
+    text_size: self.width, None
+    halign:'center'
+    canvas.before:
+        Color: 
+            rgba: self.back_color
+        Ellipse: 
+            pos: self.pos
+            size: self.size
+            
+        
 
 GridLayout:
     cols: 1
@@ -78,3 +100,9 @@ GridLayout:
         Test:
             name: "test"
             id: test
+        New_ingre:
+            name: 'new_ingre'
+            id: new_ingre 
+        Submit:
+            name: 'submit'
+            id: submit 

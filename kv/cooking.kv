@@ -27,6 +27,7 @@
                 id: cooking_grid
                 cols: 1
                 size_hint_y: None
+                height: self.minimum_height
                 Label:
                     size_hint_y: None
                     padding: (20,10)
@@ -38,14 +39,17 @@
                     color: (0,0,0,1)
         GridLayout:
             id: grid_test
-            cols: 2
+            cols: 3
             pos_hint: {"top":.1, "left": 1}
-            size_hint:1, .1
+            size_hint: 1, .1
             ImageButton:
                 id: back
                 source: "icons/back.png"
                 on_release:
                     app.change_screen("ingredients")
             ImageButton:
-                id: next
-                source: "icons/next.png"
+                id: home
+                source: "icons/home.png"
+                on_release:
+                    app.change_screen("list_recipes")
+            ImageButton:

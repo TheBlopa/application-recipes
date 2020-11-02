@@ -1,6 +1,6 @@
 #: import utils kivy.utils
 
-<Test>:
+<Submit>:
     FloatLayout:
         canvas.before:
             Rectangle:
@@ -15,12 +15,13 @@
             Image:
                 source: "icons/cooking.png"
         GridLayout:
-            id: title
             cols: 1
             pos_hint: {"top":.7, "center_x": .5}
             size_hint:.5, .1
-            MyTextInput:
-                text: 'Título'
+            MyLabel:
+                id: title
+                text: ''
+                color: (0,0,0,1)
         GridLayout:
             pos_hint: {"top": .6, "center_x": .5}
             size_hint: .6, .5
@@ -42,8 +43,8 @@
         GridLayout:
             id: grid_test
             cols: 3
-            pos_hint: {"top":.1, "left": 1}
-            size_hint: 1, .1
+            pos_hint: {"top":.1, "center_x": .3}
+            size_hint: .8, .1
             ImageButton:
                 id: back
                 source: "icons/back.png"
@@ -54,7 +55,13 @@
                 source: "icons/home.png"
                 on_release:
                     app.change_screen("list_recipes")
-            ImageButton:
-                id: next
-                source: "icons/next.png"
-            
+        GridLayout:
+            cols: 1
+            pos_hint: {"top":.09, "center_x": .85}
+            size_hint: .2, .08
+            SmoothButton:
+                text: '[color=#000000]Enviar[/color]'
+                on_release:
+                    app.getText()
+                back_color: (.66, .67, .91, 1)
+        

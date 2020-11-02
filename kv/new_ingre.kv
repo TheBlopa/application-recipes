@@ -1,6 +1,6 @@
 #: import utils kivy.utils
 
-<Recipes>:
+<new_ingre>
     FloatLayout:
         canvas.before:
             Rectangle:
@@ -8,38 +8,55 @@
                 pos: self.pos
                 source: "icons/diseno.png"
         GridLayout:
-            id: recipes_image
+            id: test
             cols: 1
             pos_hint: {"top":.85, "left": 1}
             size_hint:1, .15
+            Image:
+                source: "icons/cooking.png"
+        GridLayout:
+            id: title
+            cols: 1
+            pos_hint: {"top":.7, "center_x": .5}
+            size_hint:.5, .1
+            MyTextInput:
+                id: titulo
+                text: 'Título'
         ScrollView:
-            pos_hint: {"top": .7, "center_x": .5}
-            size_hint: .6, .6
+            pos_hint: {"top": .6, "center_x": .5}
+            size_hint: .6, .5
             GridLayout:
                 id: l_recipe
                 size_hint_y: None
                 cols: 1
-                row_default_height: root.height*0.2
+                row_default_height: root.height*.1
                 height: self.minimum_height
+            
         GridLayout:
-            cols: 2
-            pos_hint: {"top":.1, "center_x": .3}
-            size_hint: .8, .1
+            id: grid_test
+            cols: 3
+            pos_hint: {"top":.1, "center_x": .5}
+            size_hint: 1, .1
             ImageButton:
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("ingredients")
+                    app.change_screen("recipes")
             ImageButton:
                 id: home
                 source: "icons/home.png"
                 on_release:
                     app.change_screen("list_recipes")
+            ImageButton:
+                id: next
+                source: "icons/next.png"
+                on_release:
+                    app.change_screen("submit")
         GridLayout:
             cols: 1
-            pos_hint: {"top":.1, "center_x": .9}
+            pos_hint: {"top":.25, "center_x": .9}
             size_hint: .2, .1
             ImageButton:
                 source: 'icons/add.png'
                 on_release:
-                    app.change_screen('new_ingre')
+                    app.add_ingre()
