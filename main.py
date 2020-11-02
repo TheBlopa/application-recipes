@@ -99,11 +99,15 @@ class MainApp(App):
         child=''
         for children in scroll.children:
             child+=children.text+';'
-        recipe=self.root.ids['new_ingre'].ids['titulo'].text+':'+child[:-1]+':'+self.root.ids['submit'].ids['cooking_input'].text
+        recipe=self.category+':'+self.root.ids['new_ingre'].ids['titulo'].text+':'+child[:-1]+':'+self.root.ids['submit'].ids['cooking_input'].text
         print(recipe)
+        datos = {"fecha": data[0], "fiebre": data[1], "peso": data[2], "posfiebre": data[3], "temp": data[4]}
+        datos_requests = requests.post("https://proyectoubicua-1f0ab.firebaseio.com/%s/medidas.json?auth=%s"
+                                       % (local_id, id_token), data=json.dumps(datos))
     
 
     def listado(self, option):
+        self.category=option
         self.change_screen('recipes')
         scroll = self.root.ids['recipes'].ids['l_recipe']
         head = self.root.ids['recipes'].ids['recipes_image']
