@@ -8,6 +8,7 @@ from kivy.uix.button import Button
 from kivy.uix.image import Image
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.textinput import TextInput
+# from kivy.animation import Animation
 from functools import partial
 # from kivy.core.window import Window
 import kivy.utils
@@ -71,7 +72,7 @@ class MainApp(App):
         
     def build(self):
         # self.my_firebase = MyFirebase()
-        # Clock.schedule_interval(self.Callback_Clock, 30)
+        # Clock.schedule_interval(self.breath, 1)
         return GUI
 
     def on_start(self):
@@ -139,6 +140,11 @@ class MainApp(App):
     # def on_key(self, window, key, *args):
     #     if key == 27:  # the esc key
     #         self.change_screen('home_screen')
+
+    # def breath(self, dtx):
+    #     anim = Animation(size_hint=(.15,.05), t= 'in_quad', duration= .5) + Animation(size=(.2,.1), t= 'in_quad', duration= .5)
+    #     tgt=self.root.ids['recipes'].ids['add']
+    #     anim.start(tgt)
 
 
 if __name__ == "__main__":

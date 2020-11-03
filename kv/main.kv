@@ -19,6 +19,7 @@
             pos:self.center_x-7, self.center_y-7
             size:[20,20]
     pos_hint: {"center_y": .5, "center_x": .5}
+    
 <MyLabel>
     valing: 'middle'
     haling: 'center'
@@ -48,6 +49,7 @@
     markup: True
     text_size: self.width, None
     halign:'center'
+    size_hint: (.2, None)
     canvas.before:
         Color: 
             rgba: self.back_color
