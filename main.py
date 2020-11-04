@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.clock import Clock
-from kivy.uix.screenmanager import Screen
+from kivy.uix.screenmanager import ScreenManager,Screen
 from kivy.uix.label import Label
 from kivy.lang import Builder
 from kivy.uix.button import ButtonBehavior
@@ -15,14 +15,9 @@ import kivy.utils
 #from MyFirebase import MyFirebase
 import requests
 import json
-# import webbrowser
 """from plyer import notification
 from plyer.compat import PY2
 from os.path import join, dirname, realpath"""
-#pruebas gi
-
-class HomeScreen(Screen):
-    pass
 
 class Login(Screen):
     pass
@@ -76,13 +71,14 @@ class MainApp(App):
         return GUI
 
     def on_start(self):
-        # self.change_screen("test")
-        result = requests.get("https://recetas-acfc9.firebaseio.com/1.json")
-        self.data = json.loads(result.content.decode())
-        self.change_screen("list_recipes")
+        self.change_screen("login")
+        # result = requests.get("https://recetas-acfc9.firebaseio.com/1.json")
+        # self.data = json.loads(result.content.decode())
+        # self.change_screen("list_recipes")
 
     def change_screen(self, screen_name):
         screen_manager = self.root.ids['screen_manager']
+        # screen_manager.transition=FadeTransition()
         screen_manager.current = screen_name
         if screen_name == 'submit':
             self.root.ids['submit'].ids['title'].text = self.root.ids['new_ingre'].ids['titulo'].text
@@ -92,7 +88,7 @@ class MainApp(App):
     
     def add_ingre(self):
         scroll = self.root.ids['new_ingre'].ids['l_recipe']
-        text=MyTextInput(text='Ingrediente')
+        text=MyTextInput(hint_text='Ingrediente')
         scroll.add_widget(text)
 
     def getText(self):
@@ -116,7 +112,7 @@ class MainApp(App):
         head.add_widget(Image(source="icons/recipe.png"))
         for key in data:
             for title in data[key].keys():
-                btn=SmoothButton(text='[color=#000000]'+str(title)+'[/color]', 
+                btn=SmoothButton(text='[color=#000000]'+str(title)+'[/color]', size_hint= (.2, None),
                     on_release=partial(self.receta, data=data[key][title]))
                 scroll.add_widget(btn)
 

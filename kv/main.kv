@@ -5,6 +5,7 @@
 #:include kv/test.kv
 #:include kv/new_ingre.kv
 #:include kv/submit.kv
+#:include kv/login.kv
 
 <MyCheckBox>
     canvas.before:
@@ -49,7 +50,6 @@
     markup: True
     text_size: self.width, None
     halign:'center'
-    size_hint: (.2, None)
     canvas.before:
         Color: 
             rgba: self.back_color
@@ -79,6 +79,9 @@ GridLayout:
     cols: 1
     ScreenManager:
         id: screen_manager
+        Login:
+            name: "login"
+            id: login
         ListRecipes:
             name: "list_recipes"
             id: list_recipes

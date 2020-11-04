@@ -1,0 +1,42 @@
+#: import utils kivy.utils
+
+<Login>:
+    FloatLayout:
+        canvas.before:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "icons/diseno.png"
+        FloatLayout:
+            MyTextInput:
+                id: login_email
+                hint_text: "email"
+                size_hint: .6, .1
+                pos_hint: {"top": .7, "center_x": .5}
+                background_color:  0,0,0,0
+            MyTextInput:
+                id: login_pass
+                password: True
+                hint_text: "password"
+                size_hint: .6, .1
+                pos_hint: {"top": .5, "center_x": .5}
+            Label:
+                id:login_message
+                color: (1,0,0,1)
+                size_hint: .8, .1
+                pos_hint: {"top": .4, "right": .9}
+        FloatLayout:
+            SmoothButton:
+                text: "[size=20]Iniciar Sesion[/size]"
+                markup: True
+                size_hint: .4, .1
+                pos_hint: {"top": .25, "center_x": .25}
+                on_release:
+                    #app.my_firebase.Registrarse(login_email.text, login_pass.text)
+            SmoothButton:
+                text: "[size=20]Registrarse[/size]"
+                markup: True
+                size_hint: .4, .1
+                pos_hint: {"top": .25, "center_x": .75}
+                on_release:
+                    #app.my_firebase.Registrarse(login_email.text, login_pass.text)
