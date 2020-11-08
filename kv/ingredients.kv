@@ -41,12 +41,12 @@
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen('recipes')
+                    app.application.change_screen(app, 'recipes')
             ImageButton:
                 id: home
                 source: 'icons/home.png'
                 on_release:
-                    app.change_screen('list_recipes')
+                    app.application.change_screen(app, 'list_recipes')
             ImageButton:
                 id: next
                 source: "icons/next.png"

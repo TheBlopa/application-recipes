@@ -31,7 +31,8 @@
                     id: meat_button
                     source: "icons/carne.png"
                     on_release:
-                        app.listado('meat')
+                        # app.application.get()
+                        app.application.listado(app, 'meat')
                 Label:
                     text: "Carnes"
                     font_size: "18sp"
@@ -46,7 +47,7 @@
                     id: fish_button
                     source: "icons/pescado.png"
                     on_release:
-                        app.listado('fish') 
+                        app.application.listado(app, 'fish') 
                 Label:
                     text: "Pescados"
                     font_size: "18sp"
@@ -62,7 +63,7 @@
                 source: "icons/variedad.png"
                 id: variety_button
                 on_release:
-                    app.listado('variedad')
+                    app.application.listado(app, 'variedad')
             Label:
                 text: "Variedad"
                 font_size: "18sp"

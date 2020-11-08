@@ -16,6 +16,7 @@
             pos_hint: {"top": .7, "center_x": .5}
             size_hint: .6, .6
             GridLayout:
+                spacing: 5
                 id: l_recipe
                 size_hint_y: None
                 cols: 1
@@ -29,12 +30,12 @@
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("list_recipes")
+                    app.application.change_screen(app, "list_recipes")
             ImageButton:
                 id: home
                 source: "icons/home.png"
                 on_release:
-                    app.change_screen("list_recipes")
+                    app.application.change_screen(app, "list_recipes")
         GridLayout:
             id: add
             cols: 1
@@ -43,4 +44,4 @@
             ImageButton:
                 source: 'icons/add.png'
                 on_release:
-                    app.change_screen('new_ingre')
+                    app.application.change_screen(app, 'new_ingre')

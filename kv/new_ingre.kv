@@ -21,7 +21,7 @@
             size_hint:.5, .1
             MyTextInput:
                 id: titulo
-                hint_text: 'Título'
+                hint_text: u'T\u00edtulo'
         ScrollView:
             pos_hint: {"top": .6, "center_x": .5}
             size_hint: .6, .5
@@ -41,17 +41,17 @@
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("recipes")
+                    app.application.change_screen(app,"recipes")
             ImageButton:
                 id: home
                 source: "icons/home.png"
                 on_release:
-                    app.change_screen("list_recipes")
+                    app.application.change_screen(app,"list_recipes")
             ImageButton:
                 id: next
                 source: "icons/next.png"
                 on_release:
-                    app.change_screen("submit")
+                    app.application.change_screen(app,"submit")
         GridLayout:
             cols: 1
             pos_hint: {"top":.25, "center_x": .87}
@@ -59,4 +59,4 @@
             ImageButton:
                 source: 'icons/add.png'
                 on_release:
-                    app.add_ingre()
+                    app.application.add_ingre(app)

@@ -29,6 +29,7 @@
             cols: 1
             TextInput:
                 id: cooking_input
+                hint_text: "Preparaci\u00F3n"
                 canvas.before:
                     Color: 
                         rgba: .3,.3,.3,1
@@ -49,12 +50,12 @@
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("new_ingre")
+                    app.application.change_screen(app,"new_ingre")
             ImageButton:
                 id: home
                 source: "icons/home.png"
                 on_release:
-                    app.change_screen("list_recipes")
+                    app.application.change_screen(app,"list_recipes")
         GridLayout:
             cols: 1
             pos_hint: {"top":.09, "center_x": .85}
@@ -62,6 +63,6 @@
             SmoothButton:
                 text: '[color=#000000]Enviar[/color]'
                 on_release:
-                    app.getText()
+                    app.application.getText(app)
                 back_color: (.66, .67, .91, 1)
         

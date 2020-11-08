@@ -1,0 +1,90 @@
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: 
+        print('hi')
+        # self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "data/logo/kivy-icon-256.png"
+
+    MDLabel:
+        text: "KivyMD library"
+        font_style: "Button"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "kivydevelopment@gmail.com"
+        font_style: "Caption"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+        pos_hint: {"top": .7, "center_x": .5}
+        size_hint: .6, .6
+        GridLayout:
+            spacing: 5
+            id: l_recipe
+            size_hint_y: None
+            cols: 1
+            row_default_height: 50#root.height*0.1
+            Image: 
+                source: 'icons/add.png'
+            Image: 
+                source: 'icons/add.png'
+            Image: 
+                source: 'icons/add.png'
+            Image: 
+                source: 'icons/add.png'
+            Image: 
+                source: 'icons/add.png'
+            Image: 
+                source: 'icons/add.png'
+            Image: 
+                source: 'icons/add.png'
+
+NavigationLayout:
+    ScreenManager:
+        Screen:
+            BoxLayout:
+                orientation: 'vertical'
+                MDToolbar:
+                    title: "Navigation Drawer"
+                    elevation: 10
+                    left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+                GridLayout:
+                    cols: 2
+                    Button:
+                        text:'1'
+                    Button:
+                        text:'2'
+                    Button:
+                        text:'3'
+                    Button:
+                        text:'4'
+                    
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+            id: content_drawer
+
