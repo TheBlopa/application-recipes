@@ -1,8 +1,6 @@
 <ItemDrawer>:
     theme_text_color: "Custom"
-    on_release: 
-        print('hi')
-        # self.parent.set_color_item(self)
+    on_release: self.parent.set_color_item(self)
 
     IconLeftWidget:
         id: icon
@@ -25,66 +23,157 @@
             id: avatar
             size_hint: None, None
             size: "56dp", "56dp"
-            source: "data/logo/kivy-icon-256.png"
+            source: "icons/recetas.png"
 
     MDLabel:
-        text: "KivyMD library"
+        text: "MyRecipes"
         font_style: "Button"
         size_hint_y: None
         height: self.texture_size[1]
 
     MDLabel:
-        text: "kivydevelopment@gmail.com"
+        text: "github.com/TheBlopa"
         font_style: "Caption"
         size_hint_y: None
         height: self.texture_size[1]
 
     ScrollView:
-        pos_hint: {"top": .7, "center_x": .5}
-        size_hint: .6, .6
-        GridLayout:
-            spacing: 5
-            id: l_recipe
-            size_hint_y: None
-            cols: 1
-            row_default_height: 50#root.height*0.1
-            Image: 
-                source: 'icons/add.png'
-            Image: 
-                source: 'icons/add.png'
-            Image: 
-                source: 'icons/add.png'
-            Image: 
-                source: 'icons/add.png'
-            Image: 
-                source: 'icons/add.png'
-            Image: 
-                source: 'icons/add.png'
-            Image: 
-                source: 'icons/add.png'
+
+        DrawerList:
+            id: md_list
+            OneLineIconListItem:
+
+
 
 NavigationLayout:
+
     ScreenManager:
+
         Screen:
-            BoxLayout:
-                orientation: 'vertical'
-                MDToolbar:
-                    title: "Navigation Drawer"
-                    elevation: 10
-                    left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+
+            FloatLayout:
+                canvas.before:
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        source: "icons/diseno.png"
+
                 GridLayout:
+                    spacing: 10
+                    cols: 1
+                    MDToolbar:
+                        md_bg_color: app.theme_cls.primary_color
+                        title: "Mis Recetas"
+                        elevation: 10
+                        left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+
+        
+                GridLayout:
+                    pos_hint: {"top": .75, "center_x":.5}
+                    size_hint: .9, .5
                     cols: 2
-                    Button:
-                        text:'1'
-                    Button:
-                        text:'2'
-                    Button:
-                        text:'3'
-                    Button:
-                        text:'4'
-                    
+                    spacing: 20
+                    BoxLayout:
+                        canvas.before:
+                            Color: 
+                                rgba: .3,.3,.3,1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                        orientation: 'vertical'
+                        cols: 1
+                        ImageButton:
+                            id: meat_button
+                            source: "icons/carne.png"
+                            on_release:
+                                # app.application.get()
+                                print('hi')
+                        Label:
+                            text: "Carnes"
+                            font_size: "18sp"
+                            color: rgba('#000000')
+                            haling: ('center')
+                            size_hint_y: None
+                            height: dp(30)
+                    BoxLayout:
+                        canvas.before:
+                            Color: 
+                                rgba: .3,.3,.3,1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                        orientation: 'vertical'
+                        cols: 1
+                        ImageButton:
+                            id: meat_button
+                            source: "icons/carne.png"
+                            on_release:
+                                # app.application.get()
+                                print('hi')
+                        Label:
+                            text: "Carnes"
+                            font_size: "18sp"
+                            color: rgba('#000000')
+                            haling: ('center')
+                            size_hint_y: None
+                            height: dp(30)
+                    BoxLayout:
+                        canvas.before:
+                            Color: 
+                                rgba: .3,.3,.3,1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                        orientation: 'vertical'
+                        cols: 1
+                        ImageButton:
+                            id: meat_button
+                            source: "icons/carne.png"
+                            on_release:
+                                # app.application.get()
+                                print('hi')
+                        Label:
+                            text: "Carnes"
+                            font_size: "18sp"
+                            color: rgba('#000000')
+                            haling: ('center')
+                            size_hint_y: None
+                            height: dp(30)
+                    BoxLayout:
+                        canvas.before:
+                            Color: 
+                                rgba: .3,.3,.3,1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                        orientation: 'vertical'
+                        cols: 1
+                        ImageButton:
+                            id: meat_button
+                            source: "icons/carne.png"
+                            on_release:
+                                # app.application.get()
+                                print('hi')
+                        Label:
+                            text: "Carnes"
+                            font_size: "18sp"
+                            color: rgba('#000000')
+                            haling: ('center')
+                            size_hint_y: None
+                            height: dp(30)
+
+                MDBottomAppBar:
+                    MDToolbar:
+                        title: "Mis Recetas"
+                        icon: "git"
+                        md_bg_color: app.theme_cls.accent_color
+                        elevation: 10
+                        type: "bottom"
+                        mode: "free-end"
+                        on_action_button: print('hola')
+
     MDNavigationDrawer:
         id: nav_drawer
+
         ContentNavigationDrawer:
             id: content_drawer
-
