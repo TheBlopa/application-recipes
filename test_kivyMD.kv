@@ -53,10 +53,11 @@ NavigationLayout:
 
             FloatLayout:
                 canvas.before:
+                    Color:
+                        rgba: (.9, .9, .9, 1)
                     Rectangle:
                         size: self.size
                         pos: self.pos
-                        source: "icons/diseno.png"
 
                 GridLayout:
                     spacing: 10
@@ -69,17 +70,23 @@ NavigationLayout:
 
         
                 GridLayout:
-                    pos_hint: {"top": .75, "center_x":.5}
-                    size_hint: .9, .5
+                    pos_hint: {"top": .905, "center_x":.5}
+                    size_hint: .97, .89
                     cols: 2
-                    spacing: 20
+                    spacing: 15
                     BoxLayout:
                         canvas.before:
                             Color: 
                                 rgba: .3,.3,.3,1
                             Line:
                                 width: 1.2
-                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                            Color: 
+                                rgba: .99,.99,.99,1
+                            RoundedRectangle: 
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
                         orientation: 'vertical'
                         cols: 1
                         ImageButton:
@@ -89,7 +96,7 @@ NavigationLayout:
                                 # app.application.get()
                                 print('hi')
                         Label:
-                            text: "Carnes"
+                            text: "Recetas de carne"
                             font_size: "18sp"
                             color: rgba('#000000')
                             haling: ('center')
@@ -101,17 +108,23 @@ NavigationLayout:
                                 rgba: .3,.3,.3,1
                             Line:
                                 width: 1.2
-                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                            Color: 
+                                rgba: .99,.99,.99,1
+                            RoundedRectangle: 
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
                         orientation: 'vertical'
                         cols: 1
                         ImageButton:
                             id: meat_button
-                            source: "icons/carne.png"
+                            source: "icons/pescado.png"
                             on_release:
                                 # app.application.get()
                                 print('hi')
                         Label:
-                            text: "Carnes"
+                            text: "Recetas de pescado"
                             font_size: "18sp"
                             color: rgba('#000000')
                             haling: ('center')
@@ -123,17 +136,23 @@ NavigationLayout:
                                 rgba: .3,.3,.3,1
                             Line:
                                 width: 1.2
-                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                            Color: 
+                                rgba: .99,.99,.99,1
+                            RoundedRectangle: 
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
                         orientation: 'vertical'
                         cols: 1
                         ImageButton:
                             id: meat_button
-                            source: "icons/carne.png"
+                            source: "icons/variedad.png"
                             on_release:
                                 # app.application.get()
                                 print('hi')
                         Label:
-                            text: "Carnes"
+                            text: "Recetas de verduras"
                             font_size: "18sp"
                             color: rgba('#000000')
                             haling: ('center')
@@ -145,35 +164,98 @@ NavigationLayout:
                                 rgba: .3,.3,.3,1
                             Line:
                                 width: 1.2
-                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                            Color: 
+                                rgba: .99,.99,.99,1
+                            RoundedRectangle: 
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
                         orientation: 'vertical'
                         cols: 1
                         ImageButton:
                             id: meat_button
-                            source: "icons/carne.png"
+                            source: "icons/legumes.png"
                             on_release:
                                 # app.application.get()
                                 print('hi')
                         Label:
-                            text: "Carnes"
+                            text: "Recetas de legumbres"
                             font_size: "18sp"
                             color: rgba('#000000')
                             haling: ('center')
                             size_hint_y: None
                             height: dp(30)
-
-                MDBottomAppBar:
-                    MDToolbar:
-                        title: "Mis Recetas"
-                        icon: "git"
-                        md_bg_color: app.theme_cls.accent_color
-                        elevation: 10
-                        type: "bottom"
-                        mode: "free-end"
-                        on_action_button: print('hola')
+                    BoxLayout:
+                        canvas.before:
+                            Color: 
+                                rgba: .3,.3,.3,1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                            Color: 
+                                rgba: .99,.99,.99,1
+                            RoundedRectangle: 
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
+                        orientation: 'vertical'
+                        cols: 1
+                        ImageButton:
+                            id: meat_button
+                            source: "icons/desayuno.png"
+                            on_release:
+                                # app.application.get()
+                                print('hi')
+                        Label:
+                            text: "Recetas varias"
+                            font_size: "18sp"
+                            color: rgba('#000000')
+                            haling: ('center')
+                            size_hint_y: None
+                            height: dp(30)
+                    BoxLayout:
+                        canvas.before:
+                            Color: 
+                                rgba: .3,.3,.3,1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                            Color: 
+                                rgba: .99,.99,.99,1
+                            RoundedRectangle: 
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
+                        orientation: 'vertical'
+                        cols: 1
+                        ImageButton:
+                            id: meat_button
+                            source: "icons/ice-cream.png"
+                            on_release:
+                                # app.application.get()
+                                print('hi')
+                        Label:
+                            text: "Postres"
+                            font_size: "18sp"
+                            color: rgba('#000000')
+                            haling: ('center')
+                            size_hint_y: None
+                            height: dp(30)
+                
 
     MDNavigationDrawer:
         id: nav_drawer
 
         ContentNavigationDrawer:
             id: content_drawer
+
+#MDBottomAppBar:
+#                    MDToolbar:
+#                        title: "Mis Recetas"
+#                        icon: "git"
+#                        md_bg_color: app.theme_cls.accent_color
+#                        elevation: 10
+#                        type: "bottom"
+#                        mode: "free-end"
+#                        on_action_button: print('hola')

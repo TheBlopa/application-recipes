@@ -2,8 +2,7 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
-# from kivy.animation import Animation
-# from kivy.core.window import Window
+from kivymd.app import MDApp
 from manageDatabase import manageDatabase
 from applicationMethods import ApplicationMethods
 import requests
@@ -12,9 +11,9 @@ import json
 from plyer.compat import PY2
 from os.path import join, dirname, realpath"""
 
-GUI = Builder.load_file("kv/main.kv", encoding="utf-8")
+# GUI = Builder.load_file("kv/main.kv", encoding="utf-8")
 
-class MainApp(App):
+class MainApp(MDApp):
     # def __init__(self, **kwargs):
     #     super(MainApp, self).__init__(**kwargs)
     #     Window.bind(on_keyboard=self.on_key)
@@ -23,11 +22,12 @@ class MainApp(App):
         self.database = manageDatabase()
         self.application = ApplicationMethods(self.database)
         # Clock.schedule_interval(self.breath, 1)
-        return GUI
+        return Builder.load_file("kv/main.kv")
 
     def on_start(self):
         # self.change_screen("login")
         self.data = self.database.get()
+        self.application.icons(self)
         self.application.change_screen(self,"list_recipes")
     
 

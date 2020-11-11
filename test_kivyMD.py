@@ -8,6 +8,8 @@ from kivymd.uix.list import OneLineIconListItem, MDList
 from kivymd.uix.label import MDLabel, MDIcon
 from functools import partial
 from kivy.uix.button import Button, ButtonBehavior
+from kivy.core.window import Window
+Window.size = (600, 800)
 
 class ContentNavigationDrawer(BoxLayout):
     pass

@@ -1,4 +1,4 @@
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.uix.textinput import TextInput
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager,Screen
@@ -8,11 +8,31 @@ from kivy.uix.image import Image
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.label import Label
 from kivy.uix.button import ButtonBehavior
+from kivymd.theming import ThemableBehavior, ThemeManager
+from kivymd.uix.list import OneLineIconListItem, MDList
+from kivy.uix.boxlayout import BoxLayout
+from kivy.properties import StringProperty, ListProperty
 from functools import partial
 import requests
 import json
 
+class ContentNavigationDrawer(BoxLayout):
+    pass
 
+class ItemDrawer(OneLineIconListItem):
+    icon = StringProperty()
+    text_color = ListProperty((0, 0, 0, 1))
+
+class DrawerList(ThemableBehavior, MDList):
+    def set_color_item(self, instance_item):
+        """Called when tap on a menu item."""
+        # Set the color of the icon and text for the menu item.
+        for item in self.children:
+            if item.text_color == self.theme_cls.primary_color:
+                item.text_color = self.theme_cls.text_color
+                break
+        instance_item.text_color = self.theme_cls.primary_color
+    
 class MyTextInput(TextInput):
     pass
 
@@ -63,15 +83,11 @@ class ApplicationMethods():
         # self.ping(self.category, app.root.ids['new_ingre'].ids['titulo'].text)
 
     def listado(self, app, option):
-        print(app)
         self.category=option
         self.change_screen(app, 'recipes')
         scroll = app.root.ids['recipes'].ids['l_recipe']
-        head = app.root.ids['recipes'].ids['recipes_image']
         data = app.data[option]
-        head.clear_widgets()
         scroll.clear_widgets()
-        head.add_widget(Image(source="icons/recipe.png"))
         for key in data:
             btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
                 on_release=partial(self.receta, app=app, data=data[key]))
@@ -88,6 +104,30 @@ class ApplicationMethods():
             scroll.add_widget(MyCheckBox(size_hint_x=None, width=100))
         button_next = app.root.ids['ingredients'].ids['next']
         button_next.on_release = partial(self.cook, app=app, data=data['preparacion'])
+
+    def icons(self, app):
+        icons_item = {
+            "notebook-edit": "Editar receta",
+            "notebook-remove": "Eliminar receta",
+            "notebook-plus": "A\u00F1adir Receta",
+        }
+        list_recipes = app.root.ids['list_recipes'].ids['content_drawer'].ids['md_list']
+        recipes = app.root.ids['recipes'].ids['content_drawer'].ids['md_list']
+        for icon_name in icons_item.keys():
+            list_recipes.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name))
+            )
+            recipes.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name))
+            )
+    
+    def icons_drawers_effects(self, caller, option):
+        if option == 'notebook-edit':
+            print('editar')
+        elif option == 'notebook-remove':
+            print('eliminar')
+        else:
+            print('a\u00F1adir')
 
     # para relizar el delete de la recipe
     # def ping(self, category, title):
