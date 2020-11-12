@@ -113,19 +113,20 @@ class ApplicationMethods():
         }
         list_recipes = app.root.ids['list_recipes'].ids['content_drawer'].ids['md_list']
         recipes = app.root.ids['recipes'].ids['content_drawer'].ids['md_list']
+        list_recipes.clear_widgets(); recipes.clear_widgets()
         for icon_name in icons_item.keys():
             list_recipes.add_widget(
-                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name))
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
             recipes.add_widget(
-                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name))
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
     
-    def icons_drawers_effects(self, caller, option):
+    def icons_drawers_effects(self, caller, option, app):
         if option == 'notebook-edit':
-            print('editar')
+            print(app.data['variedad']['Fabes con patatas'])
         elif option == 'notebook-remove':
-            print('eliminar')
+            pass
         else:
             print('a\u00F1adir')
 

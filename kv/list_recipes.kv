@@ -95,7 +95,7 @@
                     id: meat_button
                     source: "icons/variedad.png"
                     on_release:
-                        app.application.listado(app,"variedad")
+                        app.application.listado(app,"vegetables")
                 Label:
                     text: "Recetas de verduras"
                     font_size: "18sp"
@@ -122,8 +122,7 @@
                     id: meat_button
                     source: "icons/legumes.png"
                     on_release:
-                        # app.application.get()
-                        print('hi')
+                        app.application.listado(app,"legumes")
                 Label:
                     text: "Recetas de legumbres"
                     font_size: "18sp"
@@ -150,8 +149,7 @@
                     id: meat_button
                     source: "icons/desayuno.png"
                     on_release:
-                        # app.application.get()
-                        print('hi')
+                        app.application.listado(app,"variedad")
                 Label:
                     text: "Recetas varias"
                     font_size: "18sp"
@@ -178,8 +176,7 @@
                     id: meat_button
                     source: "icons/ice-cream.png"
                     on_release:
-                        # app.application.get()
-                        print('hi')
+                        app.application.listado(app,"dessert")
                 Label:
                     text: "Postres"
                     font_size: "18sp"

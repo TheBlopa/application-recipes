@@ -7,11 +7,11 @@ class manageDatabase():
     url = 'https://recetas-acfc9.firebaseio.com/1.json'
 
     def get(self):
-        # result = requests.get(self.url)
-        # return json.loads(result.content.decode())
-        with open('1.json') as json_file:
-            data = json.load(json_file)
-            return data
+        result = requests.get(self.url)
+        return json.loads(result.content.decode())
+        # with open('1.json') as json_file:
+        #     data = json.load(json_file)
+        #     return data
 
     # Update existing data or add new data
     def patch(self, JSON, categoria):
