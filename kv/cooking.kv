@@ -3,26 +3,34 @@
 <Cooking>:
     FloatLayout:
         canvas.before:
+            Color:
+                rgba: (.9, .9, .9, 1)
             Rectangle:
                 size: self.size
                 pos: self.pos
-                source: "icons/diseno.png"
         GridLayout:
-            id: test
+            spacing: 10
             cols: 1
-            pos_hint: {"top":.85, "left": 1}
-            size_hint:1, .15
-            Image:
-                source: "icons/cooking.png"
+            MDToolbar:
+                md_bg_color: app.theme_cls.primary_color
+                title: "Mis Recetas"
+                elevation: 10
+                left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
         ScrollView:
             canvas.before:
                 Color: 
                     rgba: rgba('#EDEDED')
                 Line: 
                     width: 1.5
-                    rectangle: (self.x, self.y, self.width, self.height) 
-            pos_hint: {"top": .7, "left":1}
-            size_hint: 1, .6
+                    rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                Color:
+                    rgba: (1, 1, 1, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos 
+                    radius: [18]
+            pos_hint: {"top": .89, "left":1}
+            size_hint: 1, .8
             GridLayout:
                 id: cooking_grid
                 cols: 1
@@ -30,7 +38,7 @@
                 height: self.minimum_height
                 Label:
                     size_hint_y: None
-                    padding: (20,10)
+                    padding: (60,30)
                     height: self.texture_size[1]
                     text: ""
                     id: receta_id
@@ -40,6 +48,17 @@
         GridLayout:
             id: grid_test
             cols: 3
+            canvas.before:
+                Color: 
+                    rgba: .3,.3,.3,1
+                Line:
+                    width: 1.2
+                    rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1])
+                Color: 
+                    rgba: .99,.99,.99,1
+                Rectangle: 
+                    pos: self.pos
+                    size: self.size
             pos_hint: {"top":.1, "left": 1}
             size_hint: 1, .1
             ImageButton:
@@ -52,4 +71,4 @@
                 source: "icons/home.png"
                 on_release:
                     app.application.change_screen(app, "list_recipes")
-            ImageButton:
+            Widget:
