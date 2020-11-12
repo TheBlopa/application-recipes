@@ -30,7 +30,7 @@
                     pos: self.pos 
                     radius: [18]
             pos_hint: {"top": .89, "left":1}
-            size_hint: 1, .8
+            size_hint: 1, .78
             GridLayout:
                 canvas.after:
                     Line:
@@ -69,3 +69,7 @@
             ImageButton:
                 id: next
                 source: "icons/next.png"
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                id: content_drawer

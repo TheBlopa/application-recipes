@@ -113,7 +113,9 @@ class ApplicationMethods():
         }
         list_recipes = app.root.ids['list_recipes'].ids['content_drawer'].ids['md_list']
         recipes = app.root.ids['recipes'].ids['content_drawer'].ids['md_list']
-        list_recipes.clear_widgets(); recipes.clear_widgets()
+        ingredients = app.root.ids['ingredients'].ids['content_drawer'].ids['md_list']
+        cooking = app.root.ids['cooking'].ids['content_drawer'].ids['md_list']
+        list_recipes.clear_widgets(); recipes.clear_widgets();ingredients.clear_widgets();cooking.clear_widgets()
         for icon_name in icons_item.keys():
             list_recipes.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
@@ -121,14 +123,20 @@ class ApplicationMethods():
             recipes.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
+            ingredients.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
+            )
+            cooking.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
+            )
     
     def icons_drawers_effects(self, caller, option, app):
         if option == 'notebook-edit':
-            print(app.data['variedad']['Fabes con patatas'])
+            pass
         elif option == 'notebook-remove':
             pass
         else:
-            print('a\u00F1adir')
+            pass
 
     # para relizar el delete de la recipe
     # def ping(self, category, title):
