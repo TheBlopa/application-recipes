@@ -95,7 +95,6 @@ class ApplicationMethods():
             elif edit_delete == 'edit':
                 btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
                     on_release=partial(self.edit, app=app, title=key, data=data[key]))
-                print(data)
             else:
                 btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
                     on_release=partial(self.receta, app=app, data=data[key]))                
@@ -163,7 +162,6 @@ class ApplicationMethods():
         app.on_start()
 
     def edit(self, caller, title, data, app):
-        print(title)
         app.root.ids['new_ingre'].ids['titulo'].text=title
         scroll = app.root.ids['new_ingre'].ids['l_recipe']
         app.root.ids['submit'].ids['cooking_input'].text = data['preparacion']
