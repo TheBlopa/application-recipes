@@ -114,9 +114,9 @@ class ApplicationMethods():
 
     def icons(self, app):
         icons_item = {
+            "notebook-plus": "A\u00F1adir Receta",
             "notebook-edit": "Editar receta",
             "notebook-remove": "Eliminar receta",
-            "notebook-plus": "A\u00F1adir Receta",
         }
         list_recipes = app.root.ids['list_recipes'].ids['content_drawer'].ids['md_list']
         recipes = app.root.ids['recipes'].ids['content_drawer'].ids['md_list']
