@@ -89,12 +89,16 @@ class ApplicationMethods():
         data = app.data[option]
         scroll.clear_widgets()
         for key in data:
-            if not edit_delete:
-                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
-                    on_release=partial(self.receta, app=app, data=data[key]))
-            else:
+            if edit_delete == 'delete':
                 btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
                     on_release=partial(self.delete, category=self.category, title=key, app=app))
+            elif edit_delete == 'edit':
+                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                    on_release=partial(self.edit, app=app, title=key, data=data[key]))
+                print(data)
+            else:
+                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                    on_release=partial(self.receta, app=app, data=data[key]))                
             scroll.add_widget(btn)
 
     def receta(self, caller, app, data):
@@ -149,12 +153,24 @@ class ApplicationMethods():
         if self.choose == 'add':
             self.change_screen(app, 'new_ingre')
         elif self.choose == 'delete' :
-            self.listado(app, option, True)
+            self.listado(app, option, 'delete')
+        else:
+            self.listado(app, option, 'edit')
         
     # para relizar el delete de la recipe
     def delete(self, caller, category, title, app):
         self.data_base.delete(category, title)
         app.on_start()
+
+    def edit(self, caller, title, data, app):
+        print(title)
+        app.root.ids['new_ingre'].ids['titulo'].text=title
+        scroll = app.root.ids['new_ingre'].ids['l_recipe']
+        app.root.ids['submit'].ids['cooking_input'].text = data['preparacion']
+        self.change_screen(app,'new_ingre')
+        for ingre in data['ingredientes'].split(";"):
+            text=MyTextInput(text=ingre)
+            scroll.add_widget(text)
 
 
 class Login(Screen):
