@@ -82,15 +82,19 @@ class ApplicationMethods():
         app.on_start()
         # self.ping(self.category, app.root.ids['new_ingre'].ids['titulo'].text)
 
-    def listado(self, app, option):
+    def listado(self, app, option, edit_delete):
         self.category=option
         self.change_screen(app, 'recipes')
         scroll = app.root.ids['recipes'].ids['l_recipe']
         data = app.data[option]
         scroll.clear_widgets()
         for key in data:
-            btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
-                on_release=partial(self.receta, app=app, data=data[key]))
+            if not edit_delete:
+                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                    on_release=partial(self.receta, app=app, data=data[key]))
+            else:
+                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                    on_release=partial(self.delete, category=self.category, title=key, app=app))
             scroll.add_widget(btn)
 
     def receta(self, caller, app, data):
@@ -132,15 +136,25 @@ class ApplicationMethods():
     
     def icons_drawers_effects(self, caller, option, app):
         if option == 'notebook-edit':
-            pass
+            self.choose='edit'
+            self.change_screen(app, 'category')
         elif option == 'notebook-remove':
-            pass
+            self.choose='delete'
+            self.change_screen(app, 'category')
         else:
-            pass
+            self.choose='add'
+            self.change_screen(app, 'category')
 
+    def test(self, app, option):
+        if self.choose == 'add':
+            self.change_screen(app, 'new_ingre')
+        elif self.choose == 'delete' :
+            self.listado(app, option, True)
+        
     # para relizar el delete de la recipe
-    # def ping(self, category, title):
-    #     self.data_base.delete(category, title)
+    def delete(self, caller, category, title, app):
+        self.data_base.delete(category, title)
+        app.on_start()
 
 
 class Login(Screen):
@@ -165,5 +179,8 @@ class New_ingre(Screen):
     pass
 
 class Submit(Screen):
+    pass
+
+class Category(Screen):
     pass
     

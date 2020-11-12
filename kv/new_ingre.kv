@@ -4,7 +4,7 @@
     FloatLayout:
         canvas.before:
             Color:
-                rgba: (.9, .9, .9, 1)
+                rgba: (1, 1, 1, 1)
             Rectangle:
                 size: self.size
                 pos: self.pos
@@ -19,14 +19,14 @@
         GridLayout:
             id: title
             cols: 1
-            pos_hint: {"top":.7, "center_x": .5}
+            pos_hint: {"top":.85, "center_x": .5}
             size_hint:.5, .1
             MyTextInput:
                 id: titulo
                 hint_text: u'T\u00edtulo'
         ScrollView:
-            pos_hint: {"top": .6, "center_x": .5}
-            size_hint: .6, .5
+            pos_hint: {"top": .73, "center_x": .5}
+            size_hint: .6, .6
             GridLayout:
                 id: l_recipe
                 size_hint_y: None
@@ -55,7 +55,7 @@
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.application.change_screen(app,"recipes")
+                    app.application.change_screen(app,"category")
             ImageButton:
                 id: home
                 source: "icons/home.png"
