@@ -1,0 +1,217 @@
+<Category>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: (.9, .9, .9, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        GridLayout:
+            spacing: 10
+            cols: 1
+            MDToolbar:
+                md_bg_color: app.theme_cls.primary_color
+                title: "Mis Recetas"
+                elevation: 10
+                left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+
+        
+        ScrollView:
+            pos_hint: {"top": .89, "center_x":.5}
+            size_hint: .97, .78
+            GridLayout:
+                spacing: 5
+                cols:1
+                BoxLayout:
+                    canvas.before:
+                        Color: 
+                            rgba: .3,.3,.3,1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                        Color: 
+                            rgba: .99,.99,.99,1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                    orientation: 'vertical'
+                    cols: 1
+                    ImageButton:
+                        id: meat_button
+                        source: "icons/carne.png"
+                        on_release:
+                            app.application.category='meat'; app.application.test(app, 'meat')
+                    Label:
+                        text: "Recetas de carne"
+                        font_size: "18sp"
+                        color: rgba('#000000')
+                        haling: ('center')
+                        size_hint_y: None
+                        height: dp(30)
+                BoxLayout:
+                    canvas.before:
+                        Color: 
+                            rgba: .3,.3,.3,1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                        Color: 
+                            rgba: .99,.99,.99,1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                    orientation: 'vertical'
+                    cols: 1
+                    ImageButton:
+                        id: meat_button
+                        source: "icons/pescado.png"
+                        on_release:
+                            app.application.category='fish'; app.application.test(app,'fish')
+                    Label:
+                        text: "Recetas de pescado"
+                        font_size: "18sp"
+                        color: rgba('#000000')
+                        haling: ('center')
+                        size_hint_y: None
+                        height: dp(30)
+                BoxLayout:
+                    canvas.before:
+                        Color: 
+                            rgba: .3,.3,.3,1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                        Color: 
+                            rgba: .99,.99,.99,1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                    orientation: 'vertical'
+                    cols: 1
+                    ImageButton:
+                        id: meat_button
+                        source: "icons/variedad.png"
+                        on_release:
+                            app.application.category='vegetables'; app.application.test(app,'vegetables')
+                    Label:
+                        text: "Recetas de verduras"
+                        font_size: "18sp"
+                        color: rgba('#000000')
+                        haling: ('center')
+                        size_hint_y: None
+                        height: dp(30)
+                BoxLayout:
+                    canvas.before:
+                        Color: 
+                            rgba: .3,.3,.3,1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                        Color: 
+                            rgba: .99,.99,.99,1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                    orientation: 'vertical'
+                    cols: 1
+                    ImageButton:
+                        id: meat_button
+                        source: "icons/legumes.png"
+                        on_release:
+                            app.application.category='legumes'; app.application.test(app,'legumes')
+                    Label:
+                        text: "Recetas de legumbres"
+                        font_size: "18sp"
+                        color: rgba('#000000')
+                        haling: ('center')
+                        size_hint_y: None
+                        height: dp(30)
+                BoxLayout:
+                    canvas.before:
+                        Color: 
+                            rgba: .3,.3,.3,1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                        Color: 
+                            rgba: .99,.99,.99,1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                    orientation: 'vertical'
+                    cols: 1
+                    ImageButton:
+                        id: meat_button
+                        source: "icons/desayuno.png"
+                        on_release:
+                            app.application.category='variedad'; app.application.test(app,'variedad')
+                    Label:
+                        text: "Recetas varias"
+                        font_size: "18sp"
+                        color: rgba('#000000')
+                        haling: ('center')
+                        size_hint_y: None
+                        height: dp(30)
+                BoxLayout:
+                    canvas.before:
+                        Color: 
+                            rgba: .3,.3,.3,1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],10)
+                        Color: 
+                            rgba: .99,.99,.99,1
+                        RoundedRectangle: 
+                            pos: self.pos
+                            size: self.size
+                            radius: [10]
+                    orientation: 'vertical'
+                    cols: 1
+                    ImageButton:
+                        id: meat_button
+                        source: "icons/ice-cream.png"
+                        on_release:
+                            app.application.category='dessert'; app.application.test(app,'dessert')
+                    Label:
+                        text: "Postres"
+                        font_size: "18sp"
+                        color: rgba('#000000')
+                        haling: ('center')
+                        size_hint_y: None
+                        height: dp(30)
+    GridLayout:
+        cols: 3
+        canvas.before:
+            Color: 
+                rgba: .3,.3,.3,1
+            Line:
+                width: 1.2
+                rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1])
+            Color: 
+                rgba: .99,.99,.99,1
+            Rectangle: 
+                pos: self.pos
+                size: self.size
+        pos_hint: {"top":.1, "center_x": .5}
+        size_hint: 1, .1
+        ImageButton:
+            id: back
+            source: "icons/back.png"
+            on_release:
+                app.application.change_screen(app, "list_recipes")
+        ImageButton:
+            id: home
+            source: "icons/home.png"
+            on_release:
+                app.application.change_screen(app, "list_recipes")
+        Widget:
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+            id: content_drawer

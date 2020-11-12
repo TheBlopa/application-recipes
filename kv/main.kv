@@ -6,6 +6,52 @@
 #:include kv/new_ingre.kv
 #:include kv/submit.kv
 #:include kv/login.kv
+#:include kv/category.kv
+
+<ItemDrawer>:
+    theme_text_color: "Custom"
+    on_release: self.parent.set_color_item(self)
+
+    IconLeftWidget:
+        id: icon
+        icon: root.icon
+        theme_text_color: "Custom"
+        text_color: root.text_color
+
+
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    padding: "8dp"
+    spacing: "8dp"
+
+    AnchorLayout:
+        anchor_x: "left"
+        size_hint_y: None
+        height: avatar.height
+
+        Image:
+            id: avatar
+            size_hint: None, None
+            size: "56dp", "56dp"
+            source: "icons/recetas.png"
+
+    MDLabel:
+        text: "MyRecipes"
+        font_style: "Button"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    MDLabel:
+        text: "github.com/TheBlopa"
+        font_style: "Caption"
+        size_hint_y: None
+        height: self.texture_size[1]
+
+    ScrollView:
+
+        DrawerList:
+            id: md_list
+            OneLineIconListItem:
 
 <MyCheckBox>
     canvas.before:
@@ -46,11 +92,16 @@
     id: smoothbutton
     background_color: (0,0,0,0)
     backkground_normal: ''
-    back_color: (.97, .86, .64, 1)
+    back_color: (.99,.99,.99,1)
     markup: True
     text_size: self.width, None
     halign:'center'
     canvas.before:
+        Color: 
+            rgba: .3,.3,.3,1
+        Line:
+            width: 1.2
+            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
         Color: 
             rgba: self.back_color
         RoundedRectangle: 
@@ -75,8 +126,7 @@
             
         
 
-GridLayout:
-    cols: 1
+NavigationLayout:
     ScreenManager:
         id: screen_manager
         Login:
@@ -88,7 +138,7 @@ GridLayout:
         Recipes:
             name: "recipes"
             id: recipes
-        Ingredients
+        Ingredients:
             name: "ingredients"
             id: ingredients
         Cooking:
@@ -103,3 +153,6 @@ GridLayout:
         Submit:
             name: 'submit'
             id: submit 
+        Category:
+            name: 'category'
+            id: category

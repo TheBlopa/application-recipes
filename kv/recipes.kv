@@ -3,44 +3,57 @@
 <Recipes>:
     FloatLayout:
         canvas.before:
+            Color:
+                rgba: (.9, .9, .9, 1)
             Rectangle:
                 size: self.size
                 pos: self.pos
-                source: "icons/diseno.png"
+
         GridLayout:
-            id: recipes_image
+            spacing: 10
             cols: 1
-            pos_hint: {"top":.85, "left": 1}
-            size_hint:1, .15
+            MDToolbar:
+                md_bg_color: app.theme_cls.primary_color
+                title: "Mis Recetas"
+                elevation: 10
+                left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
         ScrollView:
-            pos_hint: {"top": .7, "center_x": .5}
-            size_hint: .6, .6
+            pos_hint: {"top": .89, "center_x": .5}
+            size_hint: .97, .78
             GridLayout:
+                spacing: 5
                 id: l_recipe
                 size_hint_y: None
                 cols: 1
                 row_default_height: root.height*0.2
                 height: self.minimum_height
         GridLayout:
-            cols: 2
-            pos_hint: {"top":.1, "center_x": .3}
-            size_hint: .8, .1
+            cols: 3
+            canvas.before:
+                Color: 
+                    rgba: .3,.3,.3,1
+                Line:
+                    width: 1.2
+                    rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1])
+                Color: 
+                    rgba: .99,.99,.99,1
+                Rectangle: 
+                    pos: self.pos
+                    size: self.size
+            pos_hint: {"top":.1, "center_x": .5}
+            size_hint: 1, .1
             ImageButton:
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("list_recipes")
+                    app.application.change_screen(app, "list_recipes")
             ImageButton:
                 id: home
                 source: "icons/home.png"
                 on_release:
-                    app.change_screen("list_recipes")
-        GridLayout:
-            id: add
-            cols: 1
-            pos_hint: {"top":.25, "center_x": .87}
-            size_hint: .2, .1
-            ImageButton:
-                source: 'icons/add.png'
-                on_release:
-                    app.change_screen('new_ingre')
+                    app.application.change_screen(app, "list_recipes")
+            Widget:
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                id: content_drawer

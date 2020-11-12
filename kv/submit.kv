@@ -3,32 +3,35 @@
 <Submit>:
     FloatLayout:
         canvas.before:
+            Color:
+                rgba: (1, 1, 1, 1)
             Rectangle:
                 size: self.size
                 pos: self.pos
-                source: "icons/diseno.png"
         GridLayout:
-            id: test
+            spacing: 10
             cols: 1
-            pos_hint: {"top":.85, "left": 1}
-            size_hint:1, .15
-            Image:
-                source: "icons/cooking.png"
+            MDToolbar:
+                md_bg_color: app.theme_cls.primary_color
+                title: "Mis Recetas"
+                elevation: 10
+                left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
         GridLayout:
             cols: 1
-            pos_hint: {"top":.7, "center_x": .5}
+            pos_hint: {"top":.85, "center_x": .5}
             size_hint:.5, .1
             MyLabel:
                 id: title
                 text: ''
                 color: (0,0,0,1)
         GridLayout:
-            pos_hint: {"top": .6, "center_x": .5}
-            size_hint: .6, .5
+            pos_hint: {"top": .73, "center_x": .5}
+            size_hint: .6, .6
             id: l_recipe
             cols: 1
             TextInput:
                 id: cooking_input
+                hint_text: "Preparaci\u00F3n"
                 canvas.before:
                     Color: 
                         rgba: .3,.3,.3,1
@@ -43,18 +46,30 @@
         GridLayout:
             id: grid_test
             cols: 3
-            pos_hint: {"top":.1, "center_x": .3}
-            size_hint: .8, .1
+            canvas.before:
+                Color: 
+                    rgba: .3,.3,.3,1
+                Line:
+                    width: 1.2
+                    rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1])
+                Color: 
+                    rgba: .99,.99,.99,1
+                Rectangle: 
+                    pos: self.pos
+                    size: self.size
+            pos_hint: {"top":.1, "center_x": .5}
+            size_hint: 1, .1
             ImageButton:
                 id: back
                 source: "icons/back.png"
                 on_release:
-                    app.change_screen("new_ingre")
+                    app.application.change_screen(app,"new_ingre")
             ImageButton:
                 id: home
                 source: "icons/home.png"
                 on_release:
-                    app.change_screen("list_recipes")
+                    app.application.change_screen(app,"list_recipes")
+            Widget:
         GridLayout:
             cols: 1
             pos_hint: {"top":.09, "center_x": .85}
@@ -62,6 +77,10 @@
             SmoothButton:
                 text: '[color=#000000]Enviar[/color]'
                 on_release:
-                    app.getText()
+                    app.application.getText(app)
                 back_color: (.66, .67, .91, 1)
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                id: content_drawer
         
