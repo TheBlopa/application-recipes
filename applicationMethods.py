@@ -122,7 +122,11 @@ class ApplicationMethods():
         recipes = app.root.ids['recipes'].ids['content_drawer'].ids['md_list']
         ingredients = app.root.ids['ingredients'].ids['content_drawer'].ids['md_list']
         cooking = app.root.ids['cooking'].ids['content_drawer'].ids['md_list']
+        category = app.root.ids['category'].ids['content_drawer'].ids['md_list']
+        new_ingre = app.root.ids['new_ingre'].ids['content_drawer'].ids['md_list']
+        submit = app.root.ids['submit'].ids['content_drawer'].ids['md_list']
         list_recipes.clear_widgets(); recipes.clear_widgets();ingredients.clear_widgets();cooking.clear_widgets()
+        category.clear_widgets();new_ingre.clear_widgets();submit.clear_widgets()
         for icon_name in icons_item.keys():
             list_recipes.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
@@ -134,6 +138,15 @@ class ApplicationMethods():
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
             cooking.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
+            )
+            category.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
+            )
+            new_ingre.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
+            )
+            submit.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
     
