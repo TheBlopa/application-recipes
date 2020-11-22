@@ -16,24 +16,6 @@ from functools import partial
 import requests
 import json
 
-class ContentNavigationDrawer(BoxLayout):
-    pass
-
-class ItemDrawer(OneLineIconListItem):
-    icon = StringProperty()
-    text_color = ListProperty((0, 0, 0, 1))
-
-class DrawerList(ThemableBehavior, MDList):
-    def set_color_item(self, instance_item):
-        # Called when tap on a menu item.
-        # Set the color of the icon and text for the menu item.
-        for item in self.children:
-            if item.text_color == self.theme_cls.primary_color:
-                item.text_color = self.theme_cls.text_color
-                break
-        instance_item.text_color = self.theme_cls.primary_color
-  
-
 class ApplicationMethods():
 
     def __init__(self, data_base):
@@ -103,23 +85,26 @@ class ApplicationMethods():
         app: root app
         option: str
         edit-_delete: str"""
-        self.category=option
-        self.change_screen(app, 'recipes')
-        scroll = app.root.ids['recipes'].ids['l_recipe']
-        data = app.data[option]
-        scroll.clear_widgets()
-        # Set the funtion of the buttons if the comand is delete or edit or only view
-        for key in data:
-            if edit_delete == 'delete':
-                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
-                    on_release=partial(self.delete, category=self.category, title=key, app=app))
-            elif edit_delete == 'edit':
-                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
-                    on_release=partial(self.edit, app=app, title=key, data=data[key]))
-            else:
-                btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
-                    on_release=partial(self.receta, app=app, data=data[key]))                
-            scroll.add_widget(btn)
+        try:
+            self.category=option
+            self.change_screen(app, 'recipes')
+            scroll = app.root.ids['recipes'].ids['l_recipe']
+            data = app.data[option]
+            scroll.clear_widgets()
+            # Set the funtion of the buttons if the comand is delete or edit or only view
+            for key in data:
+                if edit_delete == 'delete':
+                    btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                        on_release=partial(self.delete, category=self.category, title=key, app=app))
+                elif edit_delete == 'edit':
+                    btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                        on_release=partial(self.edit, app=app, title=key, data=data[key]))
+                else:
+                    btn=SmoothButton(text='[color=#000000]'+str(key)+'[/color]',
+                        on_release=partial(self.receta, app=app, data=data[key]))                
+                scroll.add_widget(btn)
+        except:
+            pass
 
     def receta(self, caller, app, data):
         """Show a list of ingredients for the chosen recipe
