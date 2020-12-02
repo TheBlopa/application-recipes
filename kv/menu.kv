@@ -1,0 +1,86 @@
+#: import utils kivy.utils
+
+<Menu>:
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: (.9, .9, .9, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        GridLayout:
+            spacing: 10
+            cols: 1
+            MDToolbar:
+                md_bg_color: app.theme_cls.primary_color
+                title: "Mis Recetas"
+                elevation: 10
+                left_action_items: [['menu', lambda x: nav_drawer.toggle_nav_drawer()]]
+        ScrollView:
+            canvas.before:
+                Color: 
+                    rgba: rgba('#EDEDED')
+                Line: 
+                    width: 1.5
+                    rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],18)
+                Color:
+                    rgba: (1, 1, 1, 1)
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos 
+                    radius: [18]
+            pos_hint: {"top": .89, "left":1}
+            size_hint: 1, .78
+            GridLayout:
+                id: cooking_grid
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+                OneLineListItem:
+                    text: '[size=24][b]13/03/2020[/b][/size]'
+                TwoLineListItem:
+                    text: "     Comida"
+                    secondary_text: "       Lo que halla en la nevera"
+                TwoLineListItem:
+                    text: "     Cena"
+                    secondary_text: "       Coronavirus"
+                OneLineListItem:
+                    text: '[size=24][b]14/03/2020[/b][/size]'
+                TwoLineListItem:
+                    text: "     Comida"
+                    secondary_text: "       Locura"
+                TwoLineListItem:
+                    text: "     Cena"
+                    secondary_text: "       Depresion"
+        GridLayout:
+            id: grid_test
+            cols: 3
+            canvas.before:
+                Color: 
+                    rgba: .3,.3,.3,1
+                Line:
+                    width: 1.2
+                    rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1])
+                Color: 
+                    rgba: .99,.99,.99,1
+                Rectangle: 
+                    pos: self.pos
+                    size: self.size
+            pos_hint: {"top":.1, "left": 1}
+            size_hint: 1, .1
+            ImageButton:
+                id: back
+                source: "icons/back.png"
+                on_release:
+                    app.application.change_screen(app, "ingredients")
+            ImageButton:
+                id: home
+                source: "icons/home.png"
+                on_release:
+                    app.application.change_screen(app, "list_recipes")
+            Widget:
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            ContentNavigationDrawer:
+                id: content_drawer

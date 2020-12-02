@@ -13,15 +13,15 @@ class manageDatabase():
          list of str
             all the information from the database
             """
-        try:
-            result = requests.get(self.url)
-            return json.loads(result.content.decode())
-        except:
-            pass
+        # try:
+        #     result = requests.get(self.url)
+        #     return json.loads(result.content.decode())
+        # except:
+        #     pass
         # Database to test the app
-        # with open('1.json') as json_file:
-        #     data = json.load(json_file)
-        #     return data
+        with open('1.json') as json_file:
+            data = json.load(json_file)
+            return data
 
     def patch(self, JSON, category):
         """Update existing data or add new data

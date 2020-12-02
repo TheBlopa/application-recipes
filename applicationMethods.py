@@ -144,6 +144,7 @@ class ApplicationMethods():
         category = app.root.ids['category'].ids['content_drawer'].ids['md_list']
         new_ingre = app.root.ids['new_ingre'].ids['content_drawer'].ids['md_list']
         submit = app.root.ids['submit'].ids['content_drawer'].ids['md_list']
+        menu = app.root.ids['menu'].ids['content_drawer'].ids['md_list']
         # Clear all widget of mdlist before to prevent duplicates
         list_recipes.clear_widgets(); recipes.clear_widgets();ingredients.clear_widgets();cooking.clear_widgets()
         category.clear_widgets();new_ingre.clear_widgets();submit.clear_widgets()
@@ -167,6 +168,9 @@ class ApplicationMethods():
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
             submit.add_widget(
+                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
+            )
+            menu.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
 
@@ -254,6 +258,9 @@ class Submit(Screen):
     pass
 
 class Category(Screen):
+    pass
+
+class Menu(Screen):
     pass
 
 # All class for custom widgets

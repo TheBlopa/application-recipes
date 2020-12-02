@@ -26,7 +26,7 @@ class MainApp(MDApp):
         """Get all the information of the database, set the icons of all screens and change to the main screen"""
         self.data = self.database.get()
         self.application.icons(self)
-        self.application.change_screen(self,"list_recipes")
+        self.application.change_screen(self,"menu")
     
 
 
