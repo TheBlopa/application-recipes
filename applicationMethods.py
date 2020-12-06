@@ -76,7 +76,7 @@ class ApplicationMethods():
         datos = {app.root.ids['new_ingre'].ids['titulo'].text: {'ingredientes': child[:-1], 'preparacion': app.root.ids['submit'].ids['cooking_input'].text}}
         self.data_base.patch(json.dumps(datos), self.category)
         # Reinitialize the app
-        app.on_start()
+        self.change_screen(self,"list_recipes")
 
     def listado(self, app, option, edit_delete):
         """Show a list of buttons of the recipes from the option chosen
@@ -89,7 +89,7 @@ class ApplicationMethods():
             self.category=option
             self.change_screen(app, 'recipes')
             scroll = app.root.ids['recipes'].ids['l_recipe']
-            data = app.data[option]
+            data = self.data_base.get(option)
             scroll.clear_widgets()
             # Set the funtion of the buttons if the comand is delete or edit or only view
             for key in data:
@@ -144,7 +144,6 @@ class ApplicationMethods():
         category = app.root.ids['category'].ids['content_drawer'].ids['md_list']
         new_ingre = app.root.ids['new_ingre'].ids['content_drawer'].ids['md_list']
         submit = app.root.ids['submit'].ids['content_drawer'].ids['md_list']
-        menu = app.root.ids['menu'].ids['content_drawer'].ids['md_list']
         # Clear all widget of mdlist before to prevent duplicates
         list_recipes.clear_widgets(); recipes.clear_widgets();ingredients.clear_widgets();cooking.clear_widgets()
         category.clear_widgets();new_ingre.clear_widgets();submit.clear_widgets()
@@ -168,9 +167,6 @@ class ApplicationMethods():
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
             submit.add_widget(
-                ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
-            )
-            menu.add_widget(
                 ItemDrawer(icon=icon_name, text=icons_item[icon_name], on_release=partial(self.icons_drawers_effects, option=icon_name,app=app))
             )
 
@@ -258,9 +254,6 @@ class Submit(Screen):
     pass
 
 class Category(Screen):
-    pass
-
-class Menu(Screen):
     pass
 
 # All class for custom widgets

@@ -2,7 +2,7 @@ from kivy.lang import Builder
 from kivymd.app import MDApp
 from manageDatabase import manageDatabase
 from applicationMethods import ApplicationMethods
-
+from datetime import date, datetime
 
 class MainApp(MDApp):
     """Main app to call all the functionality
@@ -24,9 +24,8 @@ class MainApp(MDApp):
 
     def on_start(self):
         """Get all the information of the database, set the icons of all screens and change to the main screen"""
-        self.data = self.database.get()
         self.application.icons(self)
-        self.application.change_screen(self,"menu")
+        self.application.change_screen(self,"list_recipes")
     
 
 

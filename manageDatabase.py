@@ -6,22 +6,22 @@ class manageDatabase():
     # url for your database, for example firebase
     url = ''
 
-    def get(self):
+    def get(self,category):
         """Get data of databse on json format from the url
          Returns
          -------
          list of str
             all the information from the database
             """
-        # try:
-        #     result = requests.get(self.url)
-        #     return json.loads(result.content.decode())
-        # except:
-        #     pass
+        try:
+            result = requests.get(url = self.url[:-5] + '/' + category + '.json')
+            return json.loads(result.content.decode())
+        except:
+            pass
         # Database to test the app
-        with open('1.json') as json_file:
-            data = json.load(json_file)
-            return data
+        # with open('1.json') as json_file:
+        #     data = json.load(json_file)
+        #     return data
 
     def patch(self, JSON, category):
         """Update existing data or add new data
