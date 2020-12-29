@@ -11,6 +11,7 @@ from kivy.uix.button import ButtonBehavior
 from kivymd.theming import ThemableBehavior, ThemeManager
 from kivymd.uix.list import OneLineIconListItem, MDList
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.properties import StringProperty, ListProperty
 from functools import partial
 import requests
@@ -36,8 +37,8 @@ class ApplicationMethods():
         if screen_name == 'submit':
             app.root.ids['submit'].ids['title'].text = app.root.ids['new_ingre'].ids['titulo'].text
         # Clear all textinput that write ingredientes when the app change to this screen 
-        if screen_name == 'new_ingre':
-            app.root.ids['new_ingre'].ids['l_recipe'].clear_widgets()
+        # if screen_name == 'new_ingre':
+        #     app.root.ids['new_ingre'].ids['l_recipe'].clear_widgets()
 
     def add_ingre(self, app):
         """Add new TextInput to new_ingre screen, only aviable for add or edit a recipe
@@ -48,7 +49,10 @@ class ApplicationMethods():
         """
         scroll = app.root.ids['new_ingre'].ids['l_recipe']
         text=MyTextInput(hint_text='Ingrediente')
-        scroll.add_widget(text)
+        grid=BoxLayout(orientation= "horizontal")
+        grid.add_widget(text)
+        grid.add_widget(ImageButton(source='icons/delete.png', pos_hint= {"top":.55, "left": .05}, size_hint=(.05, .5),on_release=partial(self.remove, grid=grid, scroll=scroll)))
+        scroll.add_widget(grid)
     
     def cook(self, app, data):
         """Show the information of how to cook a recipe on his label in cooking screen
@@ -76,7 +80,7 @@ class ApplicationMethods():
         datos = {app.root.ids['new_ingre'].ids['titulo'].text: {'ingredientes': child[:-1], 'preparacion': app.root.ids['submit'].ids['cooking_input'].text}}
         self.data_base.patch(json.dumps(datos), self.category)
         # Reinitialize the app
-        self.change_screen(self,"list_recipes")
+        self.change_screen(app,"list_recipes")
 
     def listado(self, app, option, edit_delete):
         """Show a list of buttons of the recipes from the option chosen
@@ -230,6 +234,9 @@ class ApplicationMethods():
         for ingre in data['ingredientes'].split(";"):
             text=MyTextInput(text=ingre)
             scroll.add_widget(text)
+    
+    def remove(self, caller, grid, scroll):
+        scroll.remove_widget(grid)
 
 # Class for screens
 class Login(Screen):

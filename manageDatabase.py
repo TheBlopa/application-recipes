@@ -4,7 +4,7 @@ import requests
 class manageDatabase():
     """Class to create and use the database that will be using in the appliaction"""
     # url for your database, for example firebase
-    url = ''
+    url = 'https://aplication-recipes.firebaseio.com/1.json'
 
     def get(self,category):
         """Get data of databse on json format from the url
